@@ -1,0 +1,695 @@
+\ProvidesFile{ap-numbers.tex}[2022-07-03 numbers, units, and etc. appendix]
+
+%  Primary sources:
+%      See https://www.bipm.org/utils/common/pdf/si-brochure/SI-Brochure-9-EN.pdf.
+%      See https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-4-two-classes-si-units-and-si-prefixes.
+%
+%  Notes:
+%      See https://www.iso.org/standard/60241.html.
+
+\newcommand{\pkg}[1]{\textsf{#1}}
+
+\begin{VerbatimOut}{z.out}
+\chapter{NUMBERS, UNITS, AND ETC.}
+
+The \pkg{siunitx} \LaTeX\ package
+\cite{wright2022}
+can be used
+to correctly typeset
+numbers,
+units,
+combined units,
+quantities (numbers with units or combined units),
+etc.
+\end{VerbatimOut}
+
+\MyIO
+
+
+%xx Note to self: scientific prefixes, scientific suffixes, tables.
+%xx
+%xx \begin{VerbatimOut}{z.out}
+%xx
+%xx \section{Number Examples}
+%xx \end{VerbatimOut}
+%xx
+%xx \MyIO
+%xx
+%xx \begin{VerbatimOut}{z.out}
+%xx
+%xx \section{Unit Examples}
+%xx \end{VerbatimOut}
+%xx
+%xx \MyIO
+%xx
+%xx \noindent\begin{tabular}{@{}lll@{}}
+%xx   \bfseries Input& \bfseries Output& \bfseries Comment\\
+%xx   \tabularspace
+%xx   \verb+\si{\kg}+& \si{\kg}& kilogram\\
+%xx   \verb+\si{\m}+& \si{\m}& meter\\
+%xx   \verb+\si{\kg\per\m\squared}+&
+%xx     \si{\kg\per\m\squared}&
+%xx     \(= \si{\kg}/\si{\m\squared}\)\\
+%xx \end{tabular}
+%xx \end{VerbatimOut}
+%xx
+%xx \MyIO
+%xx
+%xx \begin{VerbatimOut}{z.out}
+%xx
+%xx \section{Combined Number and Unit Examples}
+%xx \end{VerbatimOut}
+%xx
+%xx \MyIO
+%xx
+%xx \begin{VerbatimOut}{z.out}
+%xx \begin{tabular}{@{}lll@{}}
+%xx   \bfseries Input& \bfseries Output& \bfseries Comment\\
+%xx   \tabularspace
+%xx   \verb+\SI{12}{\kg}+& \SI{12}{\kg}& 12 kilograms\\
+%xx   \verb+\SI{34}{\m}+&  \SI{34}{\m}& 34 meters\\
+%xx   % The next input line is too wide for the margins
+%xx   % so I'm splitting it into pieces.
+%xx   \verb+\SI{4.5e3}{\kg\per\m\squared}+&
+%xx     \SI{4.5e3}{\kg\per\m\squared}&
+%xx     \(= \num{4.5e3}\,\si{\kg}/\si{\m\squared}\)\\
+%xx \end{tabular}
+%xx \end{VerbatimOut}
+%xx
+%xx \MyIO
+%xx
+%xx \begin{VerbatimOut}{z.out}
+%xx
+%xx How many seconds are in a non-leap year that does not have any leap seconds?
+%xx % I tried several things and couold not get \cancel to work with \per.
+%xx % Mark Senn    2019-12-29
+%xx \begin{align*}
+%xx            \frac{\SI{365}{\cancel\d}}{\si{\y}}
+%xx     \times \frac{\SI{24}{\cancel\h}}{\si{\cancel\d}}
+%xx     \times \frac{\SI{60}{\cancel\min}}{\si{\cancel\h}}
+%xx     \times \frac{\SI{60}{\s}}{\si{\cancel\min}}
+%xx     % From http://www.emerson.emory.edu/services/latex/latex_119.html
+%xx     %     Spacing in Math Mode
+%xx     %     In a math environment, LaTeX ignores the spaces you type
+%xx     %     and puts in the spacing that it thinks is best. LaTeX formats
+%xx     %     mathematics the way it's done in mathematics texts. If you
+%xx     %     want different spacing, LaTeX provides the following four
+%xx     %     commands for use in math mode:
+%xx     %         \; - a thick space
+%xx     %         \: - a medium space
+%xx     %         \, - a thin space
+%xx     %         \! - a negative thin space
+%xx     & = \num{31536000}\;\frac{\si{\s}}{\si{\y}}\\
+%xx     & = \SI{31536000}{\s\per\y}\\
+%xx     & \approx \SI{3e7}{\s\per\y}\\
+%xx     & \approx \text{30 million\,}\si{\s\per\y}\\
+%xx \end{align*}
+%xx \end{VerbatimOut}
+%xx
+%xx \MyIO
+%xx
+%xx % Information in this section is consistent with [SIUNITX-20220607].
+%xx % Checked on 2022-06-17.
+
+
+
+\begin{VerbatimOut}{z.out}
+
+\section{Numbers}
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+
+\subsection{Number Examples}
+
+{
+  % Use single spacing.
+  \ZZbaselinestretch{1}
+  \noindent
+  \hspace*{2\parindent}\begin{tabular}{@{}lll@{}}
+    \textbf{Input}& \textbf{Output}& \textbf{Comment}\\
+    \tabularspace
+    |\num{3.45d-4}|&         \num{3.45d-4}\\
+    |\num{-0.12345}|&        \num{-0.12345}&               note the small space after the |3|\\
+    |\num{-0.1234}|&         \num{-0.1234}&                note no space between the |3| and |4|\\
+    |\num{-.123}|&           \num{-.123}&                  the |0.| is inserted automatically\\
+    |\num{.123}|&            \num{.123}&                   the |0.| is inserted automatically\\
+    |\num{0.123}|&           \num{0.123}\\
+    |\num{0.1234}|&          \num{0.1234}&                 note no space between the |3| and |4|\\
+    |\num{0.12345}|&         \num{0.12345}&                note the small space after the |3|\\
+    |\num{123}|&             \num{123}\\
+    |\num{1234}|&            \num{1234}\\
+    |\num{12345}|&           \num{12345}&                  note the small space after the |2|\\
+    |\num{2e4}|&             \num{2e4}\\
+    |\num{e5}|&              \num{e5}\\
+    |\num{2.34567e6}|&       \num{2.34567e6}&              note the small space after the |5|\\[6pt]
+    |\numlist{10;30;50;70}|& \numlist{10;30;50;70}\\[6pt]
+    |\numproduct{10 x 20}|&  \numproduct{10 x 20}\\[6pt]
+    |\numrange{10}{30}|&     \numrange{10}{30}\\[6pt]
+    |\complexnum{-4}|&       \complexnum{-4}\\
+    |\complexnum{-3-2i}|&    \complexnum{-3-2i}\\
+    |\complexnum{2+3i}|&     \complexnum{2+3i}\\
+    |\complexnum{4+-5i}|&    \complexnum{4+-5i}\\
+  \end{tabular}
+}
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+
+\section{Units}
+
+A unit consists of an optional prefix
+followed by a unit.
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+
+\subsection{Binary Prefixes}
+\end{VerbatimOut}
+
+These binary prefixes are defined by \pkg{siunitx}
+and are used for units related to computers.
+\MyIO
+
+  
+\begin{VerbatimOut}{z.out}
+{
+  % Use single spacing.
+  \ZZbaselinestretch{1}
+  % Define a math mode version of "r" column type.
+  \newcolumntype{m}{>{$}r<{$}}
+  \noindent
+  \hspace*{2\parindent}\begin{tabular}{@{}mllll@{}}
+    \textbf{Factor}& \textbf{Prefix}& \textbf{Pronounciation}& \textbf{Command}& \textbf{Symbol}\\
+    \tabularspace
+    2^{10}& kibi& kilobee& |\kibi|& \unit{\kibi\nounit}\\
+    2^{20}& mebi& megabee& |\mebi|& \unit{\mebi\nounit}\\
+    2^{30}& gibi& gigabee& |\gibi|& \unit{\gibi\nounit}\\
+    2^{40}& tebi& terabee& |\tebi|& \unit{\tebi\nounit}\\
+    2^{50}& pebi& pebibee& |\pebi|& \unit{\pebi\nounit}\\
+    2^{60}& exbi& exbibee& |\exbi|& \unit{\exbi\nounit}\\
+    2^{70}& zebi& zetabee& |\zebi|& \unit{\zebi\nounit}\\
+    2^{80}& yobi& yobibee& |\yobi|& \unit{\yobi\nounit}\\
+  \end{tabular}
+}
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+
+\subsection{Decimal Prefixes}
+
+These decimal prefixes are used for units that are usually not
+related to computers.
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+
+{
+  % Use single spacing.
+  \ZZbaselinestretch{1}
+   % Define a math mode version of "r" column type.
+  \newcolumntype{m}{>{$}r<{$}}
+  \noindent
+  \hspace*{2\parindent}\begin{tabular}{@{}mlll@{}}
+    \textbf{Factor}& \textbf{Prefix}& \textbf{Command}& \textbf{Symbol}\\
+    \tabularspace
+    10^{-24}& yocto& |\yocto|& \unit{\yocto\nounit}\\
+    10^{-21}& zepto& |\zepto|& \unit{\zepto\nounit}\\
+    10^{-18}& atto&  |\atto|&  \unit{\atto\nounit}\\
+    10^{-15}& femto& |\femto|& \unit{\femto\nounit}\\
+    10^{-12}& pico&  |\pico|&  \unit{\pico\nounit}\\
+    10^{ -9}& nano&  |\nano|&  \unit{\nano\nounit}\\
+    10^{ -6}& micro& |\micro|& \unit{\micro\nounit}\\
+    10^{ -3}& milli& |\milli|& \unit{\milli\nounit}\\
+    10^{ -2}& centi& |\centi|& \unit{\centi\nounit}\\
+    10^{ -1}& deci&  |\deci|&  \unit{\deci\nounit}\\
+    10^{  1}& deca&  |\deca|&  \unit{\deca\nounit}\\   % or \deka
+    10^{  2}& hecto& |\hecto|& \unit{\hecto\nounit}\\
+    10^{  3}& kilo&  |\kilo|&  \unit{\kilo\nounit}\\
+    10^{  6}& mega&  |\mega|&  \unit{\mega\nounit}\\
+    10^{  9}& giga&  |\giga|&  \unit{\giga\nounit}\\
+    10^{ 12}& tera&  |\tera|&  \unit{\tera\nounit}\\
+    10^{ 15}& peta&  |\peta|&  \unit{\peta\nounit}\\
+    10^{ 18}& exa&   |\exa|&   \unit{\exa\nounit}\\
+    10^{ 21}& zetta& |\zetta|& \unit{\zetta\nounit}\\
+    10^{ 24}& yotta& |\yotta|& \unit{\yotta\nounit}\\
+  \end{tabular}
+}
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+
+Here is the complete list of units defined by the \pkg{siunitx} package:
+
+{
+  \ZZbaselinestretch{1}
+  % See
+  %     https://tex.stackexchange.com/questions/100351/siunitxs-micro-symbol-has-serif
+  % for solution to \micro using wrong font.
+  \newcommand{\q}{\quad}
+  \begin{longtable}{@{}lllll@{}}%
+      \caption{Units}\\
+      \textbf{Name}& \textbf{Input}& \textbf{Output}& \textbf{Input}& \textbf{Output}\\[6pt]
+    \endfirsthead
+      \caption[]{~\emph{continued}}\\
+      \textbf{Name}& \textbf{Input}& \textbf{Output}& \textbf{Input}& \textbf{Output}\\[6pt]
+    \endhead
+      \multicolumn{4}{@{}c@{}}{\emph{continued on next page}}%
+    \endfoot
+    \endlastfoot
+    % Normally I'd indent the following lines but that makes them
+    % to wide to print the input within the margins.
+    ampere&               |\A|&    \unit{\A}&    |\ampere|&             \unit{\ampere}\\
+    \q picoampere&        |\pA|&   \unit{\pA}&   |\pico\ampere|&        \unit{\pico\ampere}\\
+    \q nanoampere&        |\nA|&   \unit{\nA}&   |\nano\ampere|&        \unit{\nano\ampere}\\
+    \q microampere&       |\uA|&   \unit{\uA}&   |\micro\ampere|&       \unit{\micro\ampere}\\
+    \q milliampere&       |\mA|&   \unit{\mA}&   |\milli\ampere|&       \unit{\milli\ampere}\\
+    \q kiloampere&        |\kA|&   \unit{\kA}&   |\kilo\ampere|&        \unit{\kilo\ampere}\\[6pt]
+    astronomical unit&    &        &             |\astronomicalunit|&   \unit{\astronomicalunit}\\[6pt]
+    becquerel&            &        &             |\becquerel|&          \unit{\becquerel}\\[6pt]
+    bel&                  &        &             |\bel|&                \unit{\bel}\\
+    \q decibel&           |\dB|&   \unit{\dB}&   |\decibel|&            \unit{\decibel}\\[6pt]
+    bit&                  &        &             |\bit|&                \unit{\bit}\\[6pt]
+    byte&                 &        &             |\byte|&               \unit{\byte}\\[6pt]
+    candela&              &        &             |\candela|&            \unit{\candela}\\[6pt]
+    coulomb&              |\C|&    \unit{\C}&    |\coulomb|&            \unit{\coulomb}\\
+    \q nanocoulomb&       |\nC|&   \unit{\nC}&   |\nano\coulomb|&       \unit{\nano\coulomb}\\
+    \q microcoulomb&      |\uC|&   \unit{\uC}&   |\micro\coulomb|&      \unit{\micro\coulomb}\\
+    \q millicoulomb&      |\mC|&   \unit{\mC}&   |\milli\coulomb|&      \unit{\milli\coulomb}\\[6pt]
+    dalton&               &        &             |\dalton|&             \unit{\dalton}\\[6pt]
+    day&                  &        &             |\day|&                \unit{\day}\\[6pt]
+    degree (plane angle)& &        &             |\degree|&             \unit{\degree}\\
+    \q minute&            &        &             |\arcminute|&          \unit{\arcminute}\\
+    \q second&            &        &             |\arcsecond|&          \unit{\arcsecond}\\[6pt]
+    degree Celsius&       &        &             |\degreeCelsuis|&      \unit{\degreeCelsius}\\[6pt]
+    electronvolt&         |\eV|&   \unit{\eV}&   |\electronvolt|&       \unit{\electronvolt}\\
+    \q millielectronvolt& |\meV|&  \unit{\meV}&  |\milli\electronvolt|& \unit{\milli\electronvolt}\\
+    \q kiloelectronvolt&  |\keV|&  \unit{\keV}&  |\kilo\electronvolt|&  \unit{\kilo\electronvolt}\\
+    \q megaelectronvolt&  |\MeV|&  \unit{\MeV}&  |\mega\electronvolt|&  \unit{\mega\electronvolt}\\
+    \q gigaelectronvolt&  |\GeV|&  \unit{\GeV}&  |\giga\electronvolt|&  \unit{\giga\electronvolt}\\
+    \q teraelectronvolt&  |\TeV|&  \unit{\TeV}&  |\tera\electronvolt|&  \unit{\tera\electronvolt}\\[6pt]
+    farad&                |\F|&    \unit{\F}&    |\farad|&              \unit{\farad}\\
+    \q femtofarad&        |\fF|&   \unit{\fF}&   |\femto\farad|&        \unit{\femto\farad}\\
+    \q picofarad&         |\pF|&   \unit{\pF}&   |\pico\farad|&         \unit{\pico\farad}\\
+    \q nanofarad&         |\nF|&   \unit{\nF}&   |\nano\farad|&         \unit{\nano\farad}\\
+    \q microfarad&        |\uF|&   \unit{\uF}&   |\micro\farad|&        \unit{\micro\farad}\\[6pt]
+    gram&                 |\g|&    \unit{\g}&    |\gram|&               \unit{\gram}\\
+    \q femtogram&         |\fg|&   \unit{\fg}&   |\femto\gram|&         \unit{\femto\gram}\\
+    \q picogram&          |\pg|&   \unit{\pg}&   |\pico\gram|&          \unit{\pico\gram}\\
+    \q nanogram&          |\ng|&   \unit{\ng}&   |\nano\gram|&          \unit{\nano\gram}\\
+    \q microgram&         |\ug|&   \unit{\ug}&   |\micro\gram|&         \unit{\micro\gram}\\
+    \q milligram&         |\mg|&   \unit{\mg}&   |\milli\gram|&         \unit{\milli\gram}\\
+    \q kilogram&          |\kg|&   \unit{\kg}&   |\kilogram|&           \unit{\kilogram}\\
+    &                     &        &             |\kilo\gram|&          \unit{\kilo\gram}\\[6pt]
+    gray&                 &        &             |\gray|&               \unit{\gray}\\[6pt]
+    hectare&              &        &             |\hectare|&            \unit{\hectare}\\[6pt]
+    henry&                |\H|&    \unit{\H}&    |\henry|&              \unit{\henry}\\
+    \q femtohentry&       |\fH|&   \unit{\fH}&   |\femto\henry|&        \unit{\femto\henry}\\
+    \q picohentry&        |\pH|&   \unit{\pH}&   |\pico\henry|&         \unit{\pico\henry}\\
+    \q nanohentry&        |\nH|&   \unit{\nH}&   |\nano\henry|&         \unit{\nano\henry}\\
+    \q microhentry&       |\uH|&   \unit{\uH}&   |\micro\henry|&        \unit{\micro\henry}\\
+    \q millihentry&       |\mH|&   \unit{\mH}&   |\milli\henry|&        \unit{\milli\henry}\\[6pt]
+    hertz&                |\Hz|&   \unit{\Hz}&   |\hertz|&              \unit{\hertz}\\
+    \q millihertz&        |\mHz|&  \unit{\mHz}&  |\milli\hertz|&        \unit{\milli\hertz}\\
+    \q kilohertz&         |\kHz|&  \unit{\kHz}&  |\kilo\hertz|&         \unit{\kilo\hertz}\\
+    \q megahertz&         |\MHz|&  \unit{\MHz}&  |\mega\hertz|&         \unit{\mega\hertz}\\
+    \q gigahertz&         |\GHz|&  \unit{\GHz}&  |\giga\hertz|&         \unit{\giga\hertz}\\
+    \q terahertz&         |\THz|&  \unit{\THz}&  |\tera\hertz|&         \unit{\tera\hertz}\\[6pt]
+    hour&                 &        &             |\hour|&               \unit{\hour}\\[6pt]
+    joule&                |\J|&    \unit{\J}&    |\joule|&              \unit{\joule}\\
+    \q microjoule&        |\uJ|&   \unit{\uJ}&   |\micro\joule|&        \unit{\micro\joule}\\
+    \q millijoule&        |\mJ|&   \unit{\mJ}&   |\milli\joule|&        \unit{\milli\joule}\\
+    \q kilojoule&         |\kJ|&   \unit{\kJ}&   |\kilo\joule|&         \unit{\kilo\joule}\\
+    \q megajoule&         &        &             |\mega\joule|&         \unit{\mega\joule}\\[6pt]
+    katal&                &        &             |\katal|&              \unit{\katal}\\[6pt]
+    kelvin&               |\K|&    \unit{\K}&    |\kelvin|&             \unit{\kelvin}\\[6pt]
+    kilowatt hour&        |\kWh|&  \unit{\kWh}&  \\[6pt]
+    liter&                |\L|&    \unit{\L}&    |\liter|&              \unit{\liter}\\
+    \q microliter&        |\uL|&   \unit{\uL}&   |\micro\liter|&        \unit{\micro\liter}\\
+    \q milliliter&        |\mL|&   \unit{\mL}&   |\milli\liter|&        \unit{\milli\liter}\\
+    \q hectoliter&        |\hL|&   \unit{\hL}&   |\hecto\liter|&        \unit{\hecto\liter}\\[6pt]
+    lumen&                &        &             |\lumen|&              \unit{\lumen}\\[6pt]
+    lux&                  &        &             |\lux|&                \unit{\lux}\\[6pt]
+    meter&                |\m|&    \unit{\m}&    |\meter|&              \unit{\meter}\\
+    \q picometer&         |\pm|&   \unit{\pm}&   |\pico\meter|&         \unit{\pico\meter}\\
+    \q nanometer&         |\nm|&   \unit{\nm}&   |\nano\meter|&         \unit{\nano\meter}\\
+    \q micrometer&        |\um|&   \unit{\um}&   |\micro\meter|&        \unit{\micro\meter}\\
+    \q millimeter&        |\mm|&   \unit{\mm}&   |\milli\meter|&        \unit{\milli\meter}\\
+    \q centimeter&        |\cm|&   \unit{\cm}&   |\centi\meter|&        \unit{\centi\meter}\\
+    \q decimeter&         |\dm|&   \unit{\dm}&   |\deci\meter|&         \unit{\deci\meter}\\
+    \q kilometer&         |\km|&   \unit{\km}&   |\kilo\meter|&         \unit{\kilo\meter}\\[6pt]
+    minute (time)&        |\min|&  \unit{\min}&  |\minute|&             \unit{\minute}\\[6pt]
+    mole&                 |\mol|&  \unit{\mol}&  |\mole|&               \unit{\mole}\\
+    \q femtomole&         |\fmol|& \unit{\fmol}& |\femto\mole|&         \unit{\femto\mole}\\
+    \q picomole&          |\pmol|& \unit{\pmol}& |\pico\mole|&          \unit{\pico\mole}\\
+    \q nanomole&          |\nmol|& \unit{\nmol}& |\nano\mole|&          \unit{\nano\mole}\\
+    \q micromole&         |\umol|& \unit{\umol}& |\micro\mole|&         \unit{\micro\mole}\\
+    \q millimole&         |\mmol|& \unit{\mmol}& |\milli\mole|&         \unit{\milli\mole}\\
+    \q kilomole&          |\kmol|& \unit{\kmol}& |\kilo\mole|&          \unit{\kilo\mole}\\[6pt]
+    neper&                &        &             |\neper|&              \unit{\neper}\\[6pt]
+    newton&               |\N|&    \unit{\N}&    |\newton|&             \unit{\newton}\\
+    \q millinewton&       |\mN|&   \unit{\mN}&   |\milli\newton|&       \unit{\milli\newton}\\
+    \q kilonewton&        |\kN|&   \unit{\kN}&   |\kilo\newton|&        \unit{\kilo\newton}\\
+    \q meganewton&        |\MN|&   \unit{\MN}&   |\mega\newton|&        \unit{\mega\newton}\\[6pt]
+    ohm&                  &        &             |\ohm|&                \unit{\ohm}\\
+    \q milliohm&          |\mohm|& \unit{\mohm}& |\milli\ohm|&          \unit{\milli\ohm}\\
+    \q kiloohm&           |\kohm|& \unit{\kohm}& |\kilo\ohm|&           \unit{\kilo\ohm}\\
+    \q megaohm&           |\Mohm|& \unit{\Mohm}& |\mega\ohm|&           \unit{\mega\ohm}\\[6pt]
+    pascal&               |\Pa|&   \unit{\Pa}&   |\pascal|&             \unit{\pascal}\\
+    \q kilopascal&        |\kPa|&  \unit{\kPa}&  |\kilo\pascal|&        \unit{\kilo\pascal}\\
+    \q megapascal&        |\MPa|&  \unit{\MPa}&  |\mega\pascal|&        \unit{\mega\pascal}\\
+    \q gigapascal&        |\GPa|&  \unit{\GPa}&  |\giga\pascal|&        \unit{\giga\pascal}\\[6pt]
+    percent&              &        &             |\percent|&            \unit{\percent}\\[6pt]
+    radian&               &        &             |\radian|&             \unit{\radian}\\[6pt]
+    second&               |\s|&    \unit{\s}&    |\second|&             \unit{\second}\\
+    \q attosecond&        |\as|&   \unit{\as}&   |\atto\second|&        \unit{\as}\\
+    \q femtosecond&       |\fs|&   \unit{\fs}&   |\femto\second|&       \unit{\fs}\\
+    \q picosecond&        |\ps|&   \unit{\ps}&   |\pico\second|&        \unit{\ps}\\
+    \q nanosecond&        |\ns|&   \unit{\ns}&   |\nano\second|&        \unit{\ns}\\
+    \q microsecond&       |\us|&   \unit{\us}&   |\micro\second|&       \unit{\us}\\
+    \q millisecond&       |\ms|&   \unit{\ms}&   |\milli\second|&       \unit{\ms}\\[6pt]
+    siemens&              &        &             |\siemens|&            \unit{\siemens}\\[6pt]
+    sievert&              &        &             |\sievert|&            \unit{\sievert}\\[6pt]
+    steradian&            &        &             |\steradian|&          \unit{\steradian}\\[6pt]
+    tesla&                &        &             |\tesla|&              \unit{\tesla}\\[6pt]
+    tonne (metric ton)&   &        &             |\tonne|&              \unit{\tonne}\\[6pt]
+    volt&                 |\V|&    \unit{\V}&    |\volt|&               \unit{\volt}\\
+    \q picovolt&          |\pV|&   \unit{\pV}&   |\pico\volt|&          \unit{\pico\volt}\\
+    \q nanovolt&          |\nV|&   \unit{\nV}&   |\nano\volt|&          \unit{\nano\volt}\\
+    \q microvolt&         |\uV|&   \unit{\uV}&   |\micro\volt|&         \unit{\micro\volt}\\
+    \q millivolt&         |\mV|&   \unit{\mV}&   |\milli\volt|&         \unit{\milli\volt}\\
+    \q kilovolt&          |\kV|&   \unit{\kV}&   |\kilo\volt|&          \unit{\kilo\volt}\\[6pt]
+    watt&                 |\W|&    \unit{\W}&    |\watt|&               \unit{\watt}\\
+    \q nanowatt&          |\nW|&   \unit{\nW}&   |\nW|&                 \unit{\nano\watt}\\
+    \q microwatt&         |\uW|&   \unit{\uW}&   |\micro\watt|&        \unit{\micro\watt}\\
+    \q milliwatt&         |\mW|&   \unit{\mW}&   |\milli\watt|&        \unit{\milli\watt}\\
+    \q kilowatt&          |\kW|&   \unit{\kW}&   |\kilo\watt|&         \unit{\kilo\watt}\\
+    \q megawatt&          |\MW|&   \unit{\MW}&   |\mega\watt|&         \unit{\mega\watt}\\
+    \q gigawatt&          |\GW|&   \unit{\GW}&   |\giga\watt|&         \unit{\giga\watt}\\[6pt]
+    weber&                &        &             |\weber|&             \unit{\weber}\\
+  \end{longtable}
+}
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+
+\subsection{Unit Examples}
+
+{
+  % Use single spacing.
+  \ZZbaselinestretch{1}
+  \noindent
+  \hspace*{2\parindent}\begin{tabular}{@{}ll@{}}
+    \textbf{Input}& \textbf{Output}\\
+    \tabularspace
+    |\unit{\meter}|&       \unit{\meter}\\
+    |\unit{\m}|&           \unit{\m}\\
+    |\unit{m}|&            \unit{m}\\[6pt]
+    |\unit{\milli\meter}|& \unit{\milli\meter}\\                                  
+    |\unit{\mm}|&          \unit{\mm}\\
+    |\unit{mm}|&           \unit{mm}\\[6pt]
+  \end{tabular}
+}
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+  
+\subsection{Defining your own unit}
+
+% Define \c as a unit for the speed of light.
+\DeclareSIUnit{\c}{\text{c}}
+The speed of light in a vacuum (\unit{\c}) is defined as \qty{299792457}{m\per s}
+\cite{wikipedia-speed-of-light}.
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+
+\section{Combined Unit}
+
+Units can be combined to make a combined unit.
+|\NE| (negative exponent)
+and |\PE| (positive exponent)
+are defined in PurdueThesis.cls.
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+
+\subsection{Combined Unit Examples}
+
+{
+  % Use single spacing.
+  \ZZbaselinestretch{1}
+  \noindent
+  \hspace*{2\parindent}\begin{tabular}{@{}ll@{}}
+    \textbf{Input}& \textbf{Output}\\
+    \tabularspace  
+    |\unit{\meter\per\second}|&   \unit{\meter\per\second}\\
+    |\unit{\m\per\s}|&            \unit{\m\per\s}\\
+    |\unit{m.s^{-1}}|&            \unit{m.s^{-1}}\\
+    |\unit{m.s\NE1}|&             \unit{m.s\NE1}\\[6pt]
+    |\unit{m.s^2}|&               \unit{m.s^2}\\
+    |\unit{m.s\PE2}|&             \unit{m.s\PE2}\\
+  \end{tabular}
+}
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+
+\section{Quantity}
+
+A quantity consists of a number with a unit or combined units.
+
+\subsection{Quantity Examples}
+
+{
+  % Use single spacing.
+  \ZZbaselinestretch{1}
+  \noindent
+  \hspace*{2\parindent}\begin{tabular}{@{}ll@{}}
+    \textbf{Input}& \textbf{Output}\\
+    \tabularspace
+    |\qty{2}{\meter}|&            \qty{2}{\meter}\\
+    |\qty{3}{\m}|&                \qty{3}{\m}\\
+    |\qty{4}{m}|&                 \qty{4}{m}\\[6pt]
+    |\qty{2}{\meter\per\second}|& \qty{2}{\meter\per\second}\\
+    |\qty{3}{\m\per\s}|&          \qty{3}{\m\per\s}\\
+    |\qty{4}{m.s^{-1}}|&          \qty{4}{m.s^{-1}}\\
+    |\qty{5}{m.s\NE1}|&           \qty{5}{m.s\NE1}\\
+  \end{tabular}
+}
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+
+Using text math mode
+|\(|\ldots|\)|
+so spacing around equal signs is correct:\\
+\(\qty{1}{W} = \qty{1}{J.s\NE1} = \qty{1}{kg.m\PE2.s\NE3}\)
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+
+The gravitation constant,
+\(G\),
+is approximately
+\qty{6.674e-11}{m\PE3.kg\NE1.s\NE2}
+\cite{wikipedia-gravitational-constant}.
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+
+The earth's gravitation acceleration is
+\qty{9.80655}{m.s\NE2}
+\cite{wikipedia-gravitational-acceleration}.
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+
+\section{Etc.}
+
+\subsection{Angles}
+
+\begin{tabular}{@{}lll@{}}
+  \textbf{Input}& \textbf{Output}& \textbf{Comment}\\
+  \tabularspace
+  |-\ang{10}|&    -\ang{10}\\
+  |\ang{;;3}|&    \ang{;;3}\\
+  |\ang{;2;}|&    \ang{;2}\\
+  |\ang{1}|&      \ang{1}\\
+  |\ang{1;2}|&    \ang{1;2}\\
+  |\ang{1;2;3}|&  \ang{1;2;3}\\
+  |\ang{10}|&     \ang{10}\\
+\end{tabular}
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+
+\subsection{Cancel}
+
+Using |\textstyle| size:
+\unit[per-mode = fraction]
+{\cancel\kilogram\meter\per\cancel\kilogram\per\second}
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+
+Using |\displaystyle| size:
+{
+  \(
+    \displaystyle
+    \unit[per-mode = fraction]%
+    {\cancel\kilogram\meter\per\cancel\kilogram\per\second}
+  \)
+}
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+  
+I first tried to do this using the \pkg{siunitx} |\per| command
+but couldn't figure it out.
+I decided to demonstrate how to do this without using SI unit abbreviations.
+\begin{align}
+          \frac {365\,\cancel{\textrm{day}}}    {\textrm{year}}
+  \times  \frac {24\,\cancel{\textrm{hour}}}    {\cancel{\textrm{day}}}
+  \times  \frac {60\,\cancel{\textrm{minute}}}  {\cancel{\textrm{hour}}}
+  \times  \frac {60\,\textrm{\textrm{second}}}  {\cancel{\textrm{minute}}}
+  & = 31,536,000 \textrm{ seconds/year}\nonumber\\
+  & = \qty{31536000}{s.y\NE1}\quad\text{(in SI units)}\nonumber\\
+  & \approx \textrm{32 million seconds/year}\nonumber
+\end{align}
+\end{VerbatimOut}
+
+\MyIO
+
+
+% TODO:
+% Figure out how to format this and add it to the document.
+% To estimate the number of digits in the answer:
+% 365 -> 3 count all digits in first number
+% 24 -> 1  count all digits and subtract one if first digit is 1 through 4
+% 60 -> 2
+% 60 -> 2
+
+
+% The International System of Units (SI)
+% https://www.bipm.org/en/measurement-units/
+
+% The International System of Units (SI): Defining constants
+% https://www.bipm.org/en/measurement-units/si-defining-constants
+
+% The International System of Units (SI): Base units
+% https://www.bipm.org/en/measurement-units/si-base-units
+
+
+%xx \begin{VerbatimOut}{z.out}
+%xx
+%xx {%
+%xx   \ZZbaselinestretch{1}
+%xx   \newcommand\vsp{\noalign{\vspace*{6pt}}}
+%xx   % From
+%xx   % https://tex.stackexchange.com/questions/31508/flushleft-with-p-option-in-tabular
+%xx   %     It's necessary to use the \arraybackslash in the last column,
+%xx   %     otherwise \\ would not end the table row.  You can use \newline
+%xx   %     to end lines in the last column cells (and the regular \\ in
+%xx   %     the other column cells).
+%xx   %     ...
+%xx   %     If you need it often, consider defining a new column type using
+%xx   %     array features, as I did here:
+%xx   %         \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+%xx   \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}%
+%xx % \begin{longtable}{@{}P{1.4in}P{1in}llP{1.8in}@{}}
+%xx % \begin{longtable}{@{}P{1in}P{1in}llP{1.8in}@{}}
+%xx % \begin{longtable}{@{}P{1.2in}P{1in}llP{1.8in}@{}}
+%xx % \begin{longtable}{@{}P{90.72pt}P{1in}llP{1.8in}@{}}  % 1.2in (86.72pt) + 4pt = 90.72pt
+%xx   \begin{longtable}{@{}P{1.4in}P{1in}llP{1.8in}@{}}% 1.2in (86.72pt) + 4pt = 90.72pt
+%xx     % \aa ngstr\"om&
+%xx     %   length&
+%xx     %   \si{\AA}&
+%xx     %   \verb+\si{\AA}+&
+%xx     %   \SI{e-10}{\m}\\
+%xx     bar&
+%xx       pressure&
+%xx       \si{\bar}&
+%xx       \verb+\si{\bar}+&
+%xx       \SI{e-5}{\Pa}\\
+%xx     \quad millibar&
+%xx       \ditto&
+%xx       \si{\mbar}&
+%xx       \verb+\si{\mbar}+&
+%xx       \SI{e-3}{\bar}\\
+%xx     speed of light&
+%xx       speed&
+%xx       \si{\clight}&
+%xx       \verb+\si{\clight}+&
+%xx       \SI{299792458}{\m\per\s}\\
+%xx %   temperatures
+%xx %
+%xx %       \degreeCelsius
+%xx %       \celsius
+%xx %
+%xx %       range
+%xx %           \SIrange{1}{5}{\metre}
+%xx %           \SIrange{1}{5}{\milli\metre}
+%xx %
+%xx %
+%xx %   numbers
+%xx %   -10^{10}           \num{-e10}
+%xx %                      \num{12345.67890}
+%xx %                      \num{1+-2i}
+%xx %                      \num{.3.45}
+%xx %
+%xx %       \celsius
