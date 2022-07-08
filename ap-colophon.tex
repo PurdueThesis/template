@@ -1,4 +1,4 @@
-\ProvidesFile{ap-colophon.tex}[2022-05-16 colophon appendix]
+\ProvidesFile{ap-colophon.tex}[2022-07-08 colophon appendix]
 
 \begin{VerbatimOut}{z.out}
 \chapter*{COLOPHON}
@@ -10,8 +10,9 @@ This is the colophon.
 The colophon describes how a document was produced
 \cite{diggypod-colophon}.
 
-This document was compiled using \PurdueThesisVersion\ on \ZZDateRun\ at \ZZTimeRun\ with\\
-\begin{tabular}{@{}ll@{}}
+This document was compiled using \PurdueThesisVersion\ on \ZZDateRun\ at \ZZTimeRun\ with
+
+\hspace*{2\parindent}\begin{tabular}{@{}ll@{}}
   \noalign{\vspace*{6pt}}
   \toprule
   \bf Control Sequence& \bf Value\\
@@ -45,7 +46,10 @@ This document was compiled using \PurdueThesisVersion\ on \ZZDateRun\ at \ZZTime
   \verb+\ZZinscamprodeg+& \ZZinscamprodeg\\
   \noalign{\vspace*{12pt}}
   \multicolumn{2}{@{}l}{COMPUTED\hfil}\\
-  \verb+\ZZBibProcessor+& \verb+\ZZBibProcessor+ was computed, now \BibLaTeXLogo\ is used all the time\\
+  \verb+\ZZBibProcessor+& \verb+\ZZBibProcessor+ was computed,\\
+                        & now \BibLaTeXLogo\ is used all the time\\
+  \verb+\blx@bbxfile+ (bibliography style)& \csname blx@bbxfile\endcsname\\
+  \verb+\blx@cbxfile+ (citation style)&  \csname blx@cbxfile\endcsname\\
   \bottomrule
 \end{tabular}
 \end{VerbatimOut}
