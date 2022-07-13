@@ -9,17 +9,14 @@
 
 \begin{VerbatimOut}{z.out}
 
-The
-\verb+h+
-specifier used in all the examples below
-tells \LaTeX\ to put the figure
-``here''
+The |h| specifier used in all the examples below
+tells \LaTeXLogo\ to put the figure ``here''
 instead of trying
 to find a good spot
 at the top or bottom of a page.
 Specifiers can be combined,
 for example,
-``\verb+\begin{figure}[htbp!]+''.
+|\begin{figure}[htbp!]|''.
 \end{VerbatimOut}
 
 \MyIO
@@ -28,23 +25,22 @@ for example,
 \begin{VerbatimOut}{z.out}
 
 The complete list of figure placement specifiers:
-\vspace*{6pt}
-\begin{center}
+
+\begin{inlinetable}
   \begin{tabular}{@{}ll@{}}
     \toprule
-    \bf Specifier& \bf Description\\
+    \textbf{Specifier}& \textbf{Puts Figure}\\
     \midrule
-    \noalign{\vspace*{2pt}}
-    \tt b& bottom of page\\
-    \tt h& here on page\\
-    \tt p& on separate page of figures\\
-    \tt t& top of page\\
-    \tt !& try hard to put figure as early as possible\\
+    |b|& at bottom of page\\
+    |h|& here on page\\
+    |p|& on separate page of figures\\
+    |t|& at top of page\\
+    |!|& try hard to put figure as early as possible\\
     \bottomrule
   \end{tabular}
-\end{center}
-\index{figure!placement specifiers (\verb+b+, \verb+h+, \verb+p+, \verb+t+, {\tt \char'041})}
-\index{\verb+\begin{tabular}+}
+  \index{figure!placement specifiers (\verb+b+, \verb+h+, \verb+p+, \verb+t+, {\tt \char'041})}
+  \index{\verb+\begin{tabular}+}
+\end{inlinetable}
 \end{VerbatimOut}
 
 \MyIO
@@ -55,7 +51,7 @@ The complete list of figure placement specifiers:
 
 \begin{VerbatimOut}{z.out}
 
-% MyRepeat is defined in MyRepeat.sty.
+% MyRepeat is defined in pa-repeat.sty.
 \MyRepeat{This is the first paragraph.  }{5}
 \end{VerbatimOut}
 
@@ -291,6 +287,7 @@ The complete list of figure placement specifiers:
 \end{VerbatimOut}
 
 \MyIO
+
 
 \UndefineShortVerb{\|}  % so "|" in not a special character
 \ix{subfigure|see{figure, subfigures}}

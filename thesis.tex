@@ -1,4 +1,4 @@
-\ProvidesFile{thesis.tex}[2022-07-05 PurdueThesis thesis.tex file]
+\ProvidesFile{thesis.tex}[2022-07-13 PurdueThesis thesis.tex file]
 
 %
 %  Be sure to sign up for the PurdueThesis mailing list at
@@ -144,6 +144,7 @@
 %     Physics and Astronomy
 %     Political Science
 %     Psychological Sciences
+%     Public Health
 %     Sociology
 %     Speech, Language, and Hearing Sciences
 %     Statistics
@@ -244,7 +245,7 @@
 \def\ZZshowmarginlines{false}
 
 % showtimestamp
-% Show, for example, a "compiled on  2021-03-02  Tuesday  17:16:24"
+% Show, for example, a "compiled on  Tuesday  2021-03-02  17:16:24-04"
 % timestamp in the upper right corner of page?
 %     VALUE    MEANING
 %     false    don't show timestamp
@@ -531,30 +532,25 @@
 % The ISO 80000-2:2019 standard recommends the following.
 % The pa-mismath package is loaded to provide these features.
 %
-% The "d" in, for example, "dx" mathematical integrals should
-% use a roman "d".  Use, for example, "\di x" to get "\,mathrm{d}\/x".
+% The "d" in, for example, "dx" mathematical integrals should use a
+% roman "d".  "\di x" expands to "\,mathrm{d}\/x" to do this
+% automatically.
 %
-% Putting e, i, j, and pi in an upright font to indicate they are constants.
-% Load the package.
-% This loads amsmath.sty (which is already loaded above), mathtools.sty,
-% and upgreek.sty.
+% Put e, i, j, and pi in an upright font to indicate they are
+% constants.  I had thesis.tex set up to do this automatically and got
+% complaints that i was not in a math italic font.  By default I'm now
+% setting things up so e and pi are set in an upright font
+% automatically and i and j are set in a math italic font.
+% IN MATH MODE
+%     INPUT   OUTPUT                      INPUT   OUTPUT
+%     e       upright e (constant)        \ite    math italic e (variable)
+%     i       math italic i (variable)    \i      upright i (constant)
+%     j       math italic j (variable)    \j      upright j (constant
+%     \pi     upright pi (constant)       \itpi   math italic pi (variable)
 \usepackage{pa-mismath}
-  % Set things up so "e" will be typeset in an upright font.
-  % If you use "\enumber" because "e" should usually be in an upright font
-  % but sometimes you need a math italic "e" use "\mathit e" to typeset one.
   \enumber
-  % Set things up so "i" will be typeset in an upright font.
-  % If you use "\inumber" because "i" should usually be in an upright font
-  % but sometimes you need a math italic "i" use "\mathit i" to typeset one.
-  % \inumber
-  % Set things up so "j" will be typeset in an upright font.
-  % If you use "\jnumber" because "j" should usually be in an upright font
-  % but sometimes you need a math italic "j" use "\mathit j" to typeset one.
-  % \jnumber
-  % Set things up so "\pi" will be typeset in an upright font.
-  % If you use "\pinumber" because "\pi" should usually be in an upright font
-  % but sometimes you need a math italic "\pi" use "\itpi".
   \pinumber
+  \newcommand{\ite}{\mit{e}}
 
 % Define \MyRepeat{what}{repeat}.
 % Repeat "what" "repeat" number of times.
@@ -718,6 +714,25 @@
 % \mbox{} is an empty math box.
 \newcommand{\NL}{\mbox{}\\}
 
+% In this document I use in-line tables a lot.
+% These are tables that are put in the document
+% where I want them to appear and they don't
+% use \begin{table} ... \end{table}
+
+\newenvironment{inlinetable}
+  {%
+    \begingroup
+      \singlespace
+      \mbox{}\\[-9pt]%
+      \noindent
+      \hspace*{2\parindent}%
+      \ignorespaces
+  }
+  {%
+      \mbox{}\\
+    \endgroup
+  }
+
 % Print a list of files used and their version numbers in the log file.
 \listfiles
 
@@ -869,7 +884,7 @@
 %     z                       temporary files
 
 % "About Appendices" appendix.
-\include{ap-about-appendices}
+\include{ap-about}
 
 % "Bugs" appendix.
 \include{ap-bugs}
@@ -884,7 +899,7 @@
 % \include{ap-chapter-references}
 
 % Citations and references.
-\include{ap-citations-references}
+\include{ap-citations}
 
 % Common mistakes.
 \include{ap-common-mistakes}
@@ -979,7 +994,9 @@
 % Print the index.
 % The index is optional.
 \pdfbookmark{INDEX}{index}
-\printindex
+\begin{singlespace}
+  \printindex
+\end{singlespace}
 
 % If \ZZshowcolophon is true, print the colophon.
 \pdfbookmark{COLOPHON}{colophon}

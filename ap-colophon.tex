@@ -1,4 +1,4 @@
-\ProvidesFile{ap-colophon.tex}[2022-07-08 colophon appendix]
+\ProvidesFile{ap-colophon.tex}[2022-07-12 colophon appendix]
 
 \begin{VerbatimOut}{z.out}
 \chapter*{COLOPHON}
@@ -12,46 +12,47 @@ The colophon describes how a document was produced
 
 This document was compiled using \PurdueThesisVersion\ on \ZZDateRun\ at \ZZTimeRun\ with
 
-\hspace*{2\parindent}\begin{tabular}{@{}ll@{}}
-  \noalign{\vspace*{6pt}}
-  \toprule
-  \bf Control Sequence& \bf Value\\
-  \midrule
-  \multicolumn{2}{@{}l}{INPUT\hfil}\\
-  \verb+\ZZinstitution+& \ZZinstitution\\
-  \verb+\ZZcampus+& \ZZcampus\\
-  \verb+\ZZprogram+& \ZZprogram\\
-  \verb+\ZZdegree+& \ZZdegree\\
-  \verb+\ZZauthor+& \ZZauthor\\
-  \verb+\ZZdocument+& \ZZdocument\\
-  \verb+\ZZgraduation+& \ZZgraduation\\
-  \verb+\ZZtitle+& \ZZtitle\\
-  \noalign{\vspace*{6pt}}
-  \verb+\ZZshowcolophon+& \ZZshowcolophon\\
-  \verb+\ZZshowdiagonalline+& \ZZshowdiagonalline\\
-  \verb+\ZZshowgridlines+& \ZZshowgridlines\\
-  \verb+\ZZshowmarginlines+& \ZZshowmarginlines\\
-  \verb+\ZZshowtimestamp+& \ZZshowtimestamp\\
-  \verb+\ZZtodonotes+& \ZZtodonotes\\
-  \noalign{\vspace*{12pt}}
-  \multicolumn{2}{@{}l}{SHORTENED (for debugging)\hfil}\\
-  \verb+\ZZins+& \ZZins\\
-  \verb+\ZZcam+& \ZZcam\\
-  \verb+\ZZpro+& \ZZpro\\
-  \verb+\ZZdeg+& \ZZdeg\\
-  \noalign{\vspace*{12pt}}
-  \multicolumn{2}{@{}l}{DERIVED (for debugging)\hfil}\\
-  \verb+\ZZinscam+& \ZZinscam\\
-  \verb+\ZZinscampro+& \ZZinscampro\\
-  \verb+\ZZinscamprodeg+& \ZZinscamprodeg\\
-  \noalign{\vspace*{12pt}}
-  \multicolumn{2}{@{}l}{COMPUTED\hfil}\\
-  \verb+\ZZBibProcessor+& \verb+\ZZBibProcessor+ was computed,\\
-                        & now \BibLaTeXLogo\ is used all the time\\
-  \verb+\blx@bbxfile+ (bibliography style)& \csname blx@bbxfile\endcsname\\
-  \verb+\blx@cbxfile+ (citation style)&  \csname blx@cbxfile\endcsname\\
-  \bottomrule
-\end{tabular}
+\begin{inlinetable}
+  \begin{tabular}{@{}ll@{}}
+    \toprule
+    \textbf{Control Sequence}& \textbf{Value}\\
+    \midrule
+    \multicolumn{2}{@{}l}{INPUT (in thesis.tex file)\hfil}\\
+    |\ZZinstitution|& \ZZinstitution\\
+    |\ZZcampus|& \ZZcampus\\
+    |\ZZprogram|& \ZZprogram\\
+    |\ZZdegree|& \ZZdegree\\
+    |\ZZauthor|& \ZZauthor\\
+    |\ZZdocument|& \ZZdocument\\
+    |\ZZgraduation|& \ZZgraduation\\
+    |\ZZtitle|& \ZZtitle\\
+    \noalign{\vspace*{6pt}}
+    |\ZZshowcolophon|& \ZZshowcolophon\\
+    |\ZZshowdiagonalline|& \ZZshowdiagonalline\\
+    |\ZZshowgridlines|& \ZZshowgridlines\\
+    |\ZZshowmarginlines|& \ZZshowmarginlines\\
+    |\ZZshowtimestamp|& \ZZshowtimestamp\\
+    |\ZZtodonotes|& \ZZtodonotes\\
+    \noalign{\vspace*{12pt}}
+    \multicolumn{2}{@{}l}{SHORTENED (for debugging)\hfil}\\
+    |\ZZins|& \ZZins\\
+    |\ZZcam|& \ZZcam\\
+    |\ZZpro|& \ZZpro\\
+    |\ZZdeg|& \ZZdeg\\
+    \noalign{\vspace*{12pt}}
+    \multicolumn{2}{@{}l}{DERIVED (for debugging)\hfil}\\
+    |\ZZinscam|& \ZZinscam\\
+    |\ZZinscampro|& \ZZinscampro\\
+    |\ZZinscamprodeg|& \ZZinscamprodeg\\
+    \noalign{\vspace*{12pt}}
+    \multicolumn{2}{@{}l}{COMPUTED\hfil}\\
+    |\ZZBibProcessor|& |\ZZBibProcessor| used to be computed,\\
+    &                  now \BibLaTeXLogo\ is used all the time\\
+    |\blx@bbxfile| (bibliography style)& \csname blx@bbxfile\endcsname\\
+    |\blx@cbxfile| (citation style)&  \csname blx@cbxfile\endcsname\\
+    \bottomrule
+  \end{tabular}
+\end{inlinetable}
 \end{VerbatimOut}
 
 \MyIO

@@ -1,13 +1,12 @@
-\ProvidesFile{ch-introduction.tex}[2022-05-16 introduction chapter]
+\ProvidesFile{ch-introduction.tex}[2022-07-10 introduction chapter]
 
 \chapter{INTRODUCTION}
 
-
-{\sl\TeX\/} is a typesetting system for the creation of beautiful books---%
+{\sl\TeXLogo\/} is a typesetting system for the creation of beautiful books---%
 and especially for books that contain lots of mathematics
 \cite[page v]{knuth2012}.
 
-{\sl\LaTeX\/} is a software system for typesetting documents
+{\sl\LaTeXLogo\/} is a software system for typesetting documents
 \cite[back cover]{lamport1994}.
 It extends \TeX\ with more natural chapter,
 section,
@@ -17,6 +16,17 @@ articles,
 books,
 reports,
 etc.
+
+{\sl\LuaLaTeXLogo\/} adds
+the Lua scripting language,
+\MetaPostLogo
+\cite{metapost-on-the-web},
+OpenType font capability,
+and UTF-8
+\cite{wikipedia-utf-8}
+text encoding for Unicode
+\cite{wikipedia-unicode}
+to \LaTeXLogo.
 
 {\sl\PurdueThesisLogo\/}
 ({\sl\PuThLogo} for short---rhymes with tooth)
@@ -29,7 +39,7 @@ PurdueThesis is intended to support all Purdue campuses,
 programs,
 and graduate degrees.
 
-Figure \ref{fi:latex-system-flowchart} shows the \LaTeXLogo\ System Flowchart.
+Figure \ref{fi:lualatex-system-flowchart} shows a simplified \LuaLaTeXLogo\ System Flowchart.
 Overleaf
 \cite{overleaf}
 uses latexmk
@@ -114,7 +124,7 @@ or use |latexmk|---I recommend using |latexmk|.
     \draw (e-aux-files-e-c)   node[rounded rectangle, draw, right] (e-aux-files-e-n) {.aux files};
 
     % Print program names.
-    \node at ($(my-tex-files-c)!0.5!(my-pdf-file-c)$) {makeindex};
+    \node at ($(my-tex-files-c)!0.5!(my-pdf-file-c)$) {lualatex};
     \node[rectangle, draw] at (3,-1) (makeindex-n) {makeindex};
     \node[rectangle, draw] at (3,-2) (biber-or-bibtex-n) {biber or bibtex};
 
@@ -129,8 +139,8 @@ or use |latexmk|---I recommend using |latexmk|.
     \draw [rounded corners, thick]     (e-aux-files-e-n.east) -- ++(1,0) -- ++(0,-6) -- (0,-3);
 
   \end{tikzpicture}
-  \caption{\LaTeXLogo\ System Flowchart}
-  \label{fi:latex-system-flowchart}
+  \caption{Simplifed \LuaLaTeXLogo\ System Flowchart}
+  \label{fi:lualatex-system-flowchart}
 \end{figure}
 
 The
@@ -327,12 +337,12 @@ Do whatever works best for you.
 
 \I2 start input lines with\\
   \I3 the first word of a sentence\\
-  \I3 \verb+(+\\
-  \I3 \verb+and+\\
-  \I3 \verb+but+\\
-  \I3 \verb+from+\\
-  \I3 \verb+or+\\
-  \I3 \verb+to+
+  \I3 |(|\\
+  \I3 |and|\\
+  \I3 |but|\\
+  \I3 |from|\\
+  \I3 |or|\\
+  \I3 |to|
 
 \NL
 \I2 end input lines with\\
@@ -340,14 +350,14 @@ Do whatever works best for you.
   \I3 phrase-ending commas\\
   \I3 phrase-ending colons\\
   \I3 phrase-ending semicolons\\
-  \I3 \verb+)+\\
-  \I3 \verb+\\+\\
-  \I3 \verb+\\[+\textit{dimension}\verb+]+
+  \I3 |)|\\
+  \I3 |\\|\\
+  \I3 |\\[|\textit{dimension}|]|
 
 \NL
 \I2 put these on a line of their own\\
-  \I3 \verb+\begin{+\textit{environment name}\verb+}+\\
-  \I3 \verb+\end{+\textit{environment name}\verb+}+\\
+  \I3 |\begin{|\textit{environment name}|}|\\
+  \I3 |\end{|\textit{environment name}|}|\\
   \I3 short parenthetical remark
 
 
@@ -356,30 +366,25 @@ Do whatever works best for you.
 
 There are several different name styles for file names:\ix{camelCase//kebab-case//PascalCase//snake\_case}
 
-{%
-  \singlespace
-  \I2
+\begin{inlinetable}
   \begin{tabular}{@{}ll@{}}
     \toprule
-    \bf Name& \bf Why it's called that\\
+    \textbf{Name}& \textbf{Why it's called that}\\
     \midrule
-    camelCase& |C| is taller that surrounding characters,
-      looks like camel's hump\\
-    kebab-case& letters appear to be slid on shish-kebab skewer,
-      no \Keys{Shift} needed\\
+    camelCase& |C| is taller that surrounding characters, looks like camel's hump\\
+    kebab-case& letters appear to be slid on shish-kebab skewer, no \Keys{Shift} needed\\
     PascalCase& popular in the Pascal programming language\\
-    snake\_case& looks like a snake, is kebab-case except
-      |-| is changed to |_|\\
+    snake\_case& looks like a snake, is kebab-case except |-| is changed to |_|\\
     \bottomrule
   \end{tabular}
-}
+\end{inlinetable}
 
 \vspace*{6pt}
 \textcolor{red}{I recommend you only use kebab-case file names}
 that consist of only lowercase letters,
 zero or more digits,
-zero or more \verb+-+ characters
-(but no consecutive \verb+-+ characters),
+zero or more |-| characters
+(but no consecutive |-| characters),
 and a single period.
 You won't need to use \Keys{Shift} then.
 
@@ -401,34 +406,48 @@ indices,
 and vita.
 
 Graphics files specific to your thesis start
-with \verb+gr-+ and go in the graphics folder.
+with |gr-| and go in the graphics folder.
 Non-thesis graphics files retain their normal names
 and go in the graphics folder.
 
 \LaTeX\ package files specific to your thesis  start
-with \verb+pa-+ and go in the packages folder.
+with |pa-| and go in the packages folder.
 Non-thesis packages retain their normal names
 and go in the packages folder.
 
 
 \section{Special input characters}
 
-\UndefineShortVerb{\|}
-\DefineShortVerb{\;}  % so ";verbatim;" will be verbatim
-\noindent
+% \UndefineShortVerb{\|}
+% \DefineShortVerb{\;}  % so ";verbatim;" will be verbatim
+% \noindent
+% {
+%   \setlength{\tabcolsep}{8.5pt}
+%   \begin{tabular}{@{}llllllllll@{}}
+%   \multicolumn{10}{@{}l}{These ten input characters are special:\hfil}\\
+%   \kern\parindent& ;#;&  ;$;&  ;%;&  ;&;&  ;\;&            ;^;&         ;_;&  ;{;&  ;};&  ;~;\\
+%   \multicolumn{10}{@{}l}{Type\hfil}\\
+%   \kern\parindent& ;\#;& ;\$;& ;\%;& ;\&;& ;$\backslash$;& ;\char'136;& ;\_;& ;\{;& ;\};& ;\char'176;\\
+%   \multicolumn{10}{@{}l}{to get this output\hfil}\\
+%   \kern\parindent& \#&   \$&   \%&   \&&   $\backslash$&   \char'136&   \_&   \{&   \}&   \char'176\\
+% \end{tabular}
+% }
+% \UndefineShortVerb{\;}
+% \DefineShortVerb{\|}  % so "|verbatim|" will be verbatim
+
 {
-  \setlength{\tabcolsep}{8.5pt}
-\begin{tabular}{@{}lllllllllll@{}}
-  \multicolumn{10}{@{}l}{These input characters are special:\hfil}\\
-  \kern\parindent& ;#;&  ;$;&  ;%;&  ;&;&  ;\;&            ;^;&         ;_;&  ;{;&  ;};&  ;~;\\
-  \multicolumn{10}{@{}l}{Type\hfil}\\
-  \kern\parindent& ;\#;& ;\$;& ;\%;& ;\&;& ;$\backslash$;& ;\char'136;& ;\_;& ;\{;& ;\};& ;\char'176;\\
-  \multicolumn{10}{@{}l}{to get this output\hfil}\\
-  \kern\parindent& \#&   \$&   \%&   \&&   $\backslash$&   \char'136&   \_&   \{&   \}&   \char'176\\
-\end{tabular}
+  \DefineShortVerb{\;}  % so ";verbatim;" will be verbatim
+  \setlength{\tabcolsep}{9pt}
+  \noindent
+  \hspace*{\parindent}\begin{tabular}{@{}lllllllllll@{}}
+    \multicolumn{10}{@{}l}{These ten input characters are special:\hfil}\\
+    \kern\parindent ;#;&  ;$;&  ;%;&  ;&;&  ;\;&            ;^;&         ;_;&  ;{;&  ;};&  ;~;\\
+    \multicolumn{10}{@{}l}{Type\hfil}\\
+    \kern\parindent ;\#;& ;\$;& ;\%;& ;\&;& ;$\backslash$;& ;\char'136;& ;\_;& ;\{;& ;\};& ;\char'176;\\
+    \multicolumn{10}{@{}l}{to get this output\hfil}\\
+    \kern\parindent \#&   \$&   \%&   \&&   $\backslash$&   \char'136&   \_&   \{&   \}&   \char'176\\
+  \end{tabular}
 }
-\UndefineShortVerb{\;}
-\DefineShortVerb{\|}  % so "|verbatim|" will be verbatim
 
 
 \section{Spacing after periods}
@@ -436,34 +455,34 @@ and go in the packages folder.
 A lowercase letter followed by a period\ix{. (period)//spacing!after period}
 is treated like the end of a sentence
 with approximately two spaces following the period.
-To not make it the end of a sentence put \verb+\+
-or \verb+~+ after the period.
+To not make it the end of a sentence put |\|
+or |~| after the period.
 See table below.
 
 An uppercase letter followed by a period\ix{. (period)//spacing!after period}
 is treated like a person's middle initial
 with approximately one space following the period.
-To make it the end of a sentence put \verb+\@+
+To make it the end of a sentence put |\@|
 before the period.
 See table below.
 
-\begin{singlespace}
+\begin{inlinetable}
   \begin{tabular}{@{}lll@{}}
     \toprule
-    \bfseries Input& \bfseries Output& \bfseries Comment\\
+    \textbf{Input}& \textbf{Output}& \textbf{Comment}\\
     \midrule
     \noalign{\vspace{2pt}}
-    \verb+Dr. Smith+& Dr. Smith& too much space after \verb+Dr.+\\
-    \verb+Dr.\ Smith+& Dr.\ Smith& correct, \verb+Dr.+ and \verb+Smith+ can be on different lines\\
-    \verb+Dr.~Smith+& Dr.~Smith& correct, \verb+Dr.+ and \verb+Smith+ will be on same line, I\\
-    & & recommend using this\\
+    |Dr. Doe|&  Dr. Doe&  too much space after |Dr.|\\
+    |Dr.\ Doe|& Dr.\ Doe& correct, |Dr.| and |Doe| can be on different lines\\
+    |Dr.~Doe|&  Dr.~Doe&  correct, |Dr.| and |Doe| will be on same line,\\
+    & & I recommend using this\\
     \noalign{\vspace{6pt}}
-    \verb+at NASA.  The+& at NASA.  The& not enough space after \verb+NASA.+\\
-    \verb+at NASA\@.  The+& at NASA\@.  The& correct\\
+    |at NASA.  The|&   at NASA.  The&   not enough space after |NASA.|\\
+    |at NASA\@.  The|& at NASA\@.  The& correct\\
     \bottomrule
   \end{tabular}
-  \index{Dr.~Smith}
-  \index{Smith}
+  \index{Dr.~Doe}
+  \index{Doe}
   \index{\verb+~+ (tilde)}
   \index{tilde (\verb+~+)}
   \index{NASA}
@@ -471,63 +490,67 @@ See table below.
   \index{\verb+"\"@+}
   \index{period!space after}
   \index{initials}
-\end{singlespace}
+\end{inlinetable}
 
-\vspace{\baselineskip}
 
-(%
-  I thought the following was too confusing.
-  One or more \emph{lowercase}/\emph{uppercase}
-  letters followed by a period
-  is treated like
-  \emph{the end of a sentence}/\emph{a person's middle initial}
-  with approximately
-  \emph{two}/\emph{one}
-  space(s) following the period.%
-)\todowarn{maybe move this to writing style appendix?}
+\section{Avoid Complexity}
 
-(%
-  I thought some people might think the following
-  is too informal or nonstandard.
-  It is pretty confusing also.
-  One or more
-  \lower6pt\hbox{\rlap{\small lowercase}}%
-  \raise6pt\hbox{\small uppercase}
-  letters followed by a period
-  is treated like
-  \raise6pt\hbox{\rlap{\small a middle initial}}%
-  \lower6pt\hbox{\small the end of a sentence}
-  \noindent with approximately
-  \raise6pt\hbox{\small \rlap{one}}%
-  \lower6pt\hbox{\small two}
-  space(s) following the period.%
-)\todowarn{maybe move this to writing style appendix?}
+I like the first paragraph below the best:
 
+\begin{itemize}
+  \item
+    One or more lowercase letters followed
+    by a period is treated like the end of a sentence
+    with approximately two spaces following the period.
+    One or more uppercase letters followed
+    by a period is treated like a person's middle initial
+    with approximately one space following the period.
+  \item
+    One or more \emph{lowercase}/\emph{uppercase}
+      letters followed by a period
+      is treated like
+      \emph{the end of a sentence}/\emph{a person's middle initial}
+      with approximately
+      \emph{two}/\emph{one}
+      space(s) following the period.
+  \item
+    One or more
+    \lower6pt\hbox{\rlap{\small lowercase}}%
+    \raise6pt\hbox{\small uppercase}
+    letters followed by a period
+    is treated like
+    \raise6pt\hbox{\rlap{\small a middle initial}}%
+    \lower6pt\hbox{\small the end of a sentence}
+    \noindent with approximately
+    \raise6pt\hbox{\small \rlap{one}}%
+    \lower6pt\hbox{\small two}
+    space(s) following the period.
+\end{itemize}
 
 \section{Five kinds of dashes}
 
 There are five kinds of dashes\ix{dash}
 
-\edef\The#1pt{#1}
+%\edef\The#1pt{#1}
 
-\begin{singlespace}
-  \newlength{\myhyphenlen}      \settowidth{\myhyphenlen}{-}
-  \newlength{\myendashlen}      \settowidth{\myendashlen}{--}
-  \newlength{\myemdashlen}      \settowidth{\myemdashlen}{---}
-  \newlength{\myfiguredashlen}  \settowidth{\myfiguredashlen}{\FigureDash}
-  \newlength{\myminuslen}       \settowidth{\myminuslen}{\(-\)}
+\begin{inlinetable}
+  \newlength{\myhyphenlen}\settowidth{\myhyphenlen}{-}%
+  \newlength{\myendashlen}\settowidth{\myendashlen}{--}%
+  \newlength{\myemdashlen}\settowidth{\myemdashlen}{---}%
+  \newlength{\myfiguredashlen}\settowidth{\myfiguredashlen}{\FigureDash}%
+  \newlength{\myminuslen}\settowidth{\myminuslen}{\(-\)}%
   \begin{tabular}{@{}llll@{}}
     \toprule
-    \bfseries Name& \bfseries Input& \bfseries Output& \bfseries Width in Points (72.27 points/inch)\\
+    \textbf{Name}& \textbf{Input}&                \textbf{Output}& \textbf{Width (72.27 pt/inch)}\\
     \midrule
-    hyphen& \verb+-+ (one hyphen)& -& \the\myhyphenlen\\
-    endash& \verb+--+ (two hyphens)& --& \the\myendashlen\\
-    emdash& \verb+---+ (three hyphens)& ---& \the\myemdashlen\\
-    figure dash& \verb+\FigureDash+& \FigureDash& \the\myfiguredashlen\\
-    minus sign& \verb+\(-\)+& \(-\)& \the\myminuslen\\
+    hyphen&        |-| (one hyphen)&              -&               \the\myhyphenlen\\
+    endash&        |--| (two hyphens)&            --&              \the\myendashlen\\
+    emdash&        |---| (three hyphens)&         ---&             \the\myemdashlen\\
+    figure dash&   |\FigureDash|&                 \FigureDash&     \the\myfiguredashlen\\
+    minus sign&    |-| (one hyphen) in math mode& \(-\)&           \the\myminuslen\\
     \bottomrule
   \end{tabular}
-\end{singlespace}
+\end{inlinetable}
 
 \begin{description}
 
@@ -537,95 +560,75 @@ There are five kinds of dashes\ix{dash}
     is a punctuation mark used to join words
     and to separate syllables of a single word
     \cite{wikipedia-hyphen}.
-    \begin{singlespace}
+    \begin{inlinetable}
       \begin{tabular}{@{}lll@{}}
         \toprule
-        \bfseries Input& \bfseries Output& \bfseries Comment\\
+        \textbf{Input}&   \textbf{Output}& \textbf{Comment}\\
         \midrule
-        \verb+-+ (one hyphen)& -\\
-        \verb+son-in-law+& son-in-law& used to join words\\
-        \verb+gas-oline+& gas-oline& used to separate syllables, \LaTeX\ hyphenates words\\
-        & & automatically so you may not ever use this\\
+        |-| (one hyphen)& -\\
+        |son-in-law|&     son-in-law&      used to join words\\
+        |gas-oline|&      gas-oline&       used to separate syllables, \LaTeXLogo\ hyphenates words\\
+        &                 &                automatically so you may not ever use this\\
         \bottomrule
       \end{tabular}
-    \end{singlespace}
+    \end{inlinetable}
 
   \item[endash]
   \ix{dash//endash//dash!endash}
     The endash
     \cite{wikipedia-endash}
      is used for
-    \begin{singlespace}
+    \begin{inlinetable}
       \begin{tabular}{@{}lll@{}}
         \toprule
-        \bfseries Input& \bfseries Output& \bfseries Comment\\
+        \textbf{Input}& \textbf{Output}& \textbf{Comment}\\
         \midrule
-        \verb+--+ (two hyphens)& --\\
-        \verb+The Purdue--IU game+& The Purdue--IU game& conflict\\
-        \verb+Perth--Dubai--Boston+& Perth--Dubai--Boston& connection\\
-        \verb+Teal Road runs East--West+& Teal Road runs East--West& direction\\
-        \verb+ages 21--65+& ages 21--65& age range\\
-        \verb+June--July 1967+& June--July 1967& month range\\
-        \verb+pages 38--55+& pages 38--55& page range\\
-        \verb+1:15--2:15 p.m.+& 1:15--2:15 p.m.& time range\\
-        \verb+Purdue beat IU 35--28+& Purdue beat IU 35--28& scores\\
+        |--| (two hyphens)& --\\
+        |The Purdue--IU game|& The Purdue--IU game& conflict\\
+        |Perth--Dubai--Boston|& Perth--Dubai--Boston& connection\\
+        |Teal Road runs East--West|& Teal Road runs East--West& direction\\
+        |ages 21--65|& ages 21--65& age range\\
+        |June--July 1967|& June--July 1967& month range\\
+        |pages 38--55|& pages 38--55& page range\\
+        |1:15--2:15 p.m.|& 1:15--2:15 p.m.& time range\\
+        |Purdue beat IU 35--28|& Purdue beat IU 35--28& scores\\
         \bottomrule
       \end{tabular}
-    \end{singlespace}
+    \end{inlinetable}
 
   \item[emdash]
-  \ix{dash//emdash//dash!emdash}
-    The emdash
-    \cite{wikipedia-emdash}
-     is used for
-    \begin{singlespace}
-      \begin{tabular}{@{}ll@{}}
-        \toprule
-        \verb+---+ (three hyphens)& ---\\[6pt]
-        \bfseries Input& \verb+the usual suspects---Larry, Moe, and Curly+\\
-        \bfseries Output& the usual suspects---Larry, Moe, and Curly\\
-        \bfseries Comment& --- acts like colon\\[6pt]
-        \bfseries Input& \verb+Larry, Moe, and Curly---the usual suspects+\\
-        \bfseries Output& Larry, Moe, and Curly---the usual suspects\\
-        \bfseries Comment& inverse function of colon\\[6pt]
-        \bfseries Input& \verb+three people---Larry, Moe, and Curly---%+\\
-        & \verb+are the usual suspects+\\
-        \bfseries Output& three people---Larry, Moe, and Curly---are the usual suspects\\
-        \bfseries Comment& first --- acts as \verb+(+, second --- acts as \verb+)+\\[6pt]
-        \bfseries Input& \verb+I believe I shall---no, I'm going to do it.+\\
-        \bfseries Output& I believe I shall---no, I'm going to do it.\\
-        \bfseries Comment& use --- when a thought evolves on the fly\\
-        \bottomrule
-      \end{tabular}
-    \end{singlespace}
-
-    Emdashes should be used sparingly in formal writing.
+    \ix{dash//emdash//dash!emdash}
+    Emdashes should be used sparingly
+    or not at all in formal writing.
+    See 
+    \cite{cmos17-emdash,wikipedia-emdash}
+    for more information about emdashes.
 
   \item[figure dash]
   \ix{dash//figure dash//dash!figure dash}
     The figure dash
-    (input: \verb+\FigureDash+)
+    (input: \verb|\FigureDash|)
     is used to separate digits---it's the same width
     as a digit and is used in identification numbers,
     part numbers,
     phone numbers, etc.
-    Type, for example, \verb+Q6759\FigureDash 18100+
+    Type, for example, \verb|Q6759\FigureDash 18100|
     to get ``Q6759\FigureDash 18100''.
 
   \item[minus sign]
   \ix{dash//minus sign//dash!minus sign}
     Used for negative numbers or subtraction in math mode.
-    \begin{singlespace}
+    \begin{inlinetable}
       \begin{tabular}{@{}lll@{}}
         \toprule
-        \bfseries Input& \bfseries Output& \bfseries Comment\\
+        \textbf{Input}& \textbf{Output}& \textbf{Comment}\\
         \midrule
-        \verb+-+& \(-\)& (one hyphen in text math mode or display math mode)\\
-        \verb=\(-a + b\)=& \(-a + b\)& negative $a$\\
-        \verb+\(a - b\)+& \(a - b\)& subtraction\\
+        |-|& \(-\)& (one hyphen in text math mode or display math mode)\\
+        |\(-a + b\)|& \(-a + b\)& negative $a$\\
+        |\(a - b\)|& \(a - b\)& subtraction\\
         \bottomrule
       \end{tabular}
-    \end{singlespace}
+    \end{inlinetable}
 
 \end{description}
 

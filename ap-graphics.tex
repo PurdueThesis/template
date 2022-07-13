@@ -3,8 +3,8 @@
 \begin{VerbatimOut}{z.out}
 \chapter{GRAPHICS}
 
-There are many ways to make graphics for \LaTeX.
-I like to use a system that uses \LaTeX\ fonts
+There are many ways to make graphics for \LaTeXLogo.
+I like to use a system that uses \LaTeXLogo\ fonts
 so the appearance of the output is professional.
 \end{VerbatimOut}
 
@@ -25,7 +25,17 @@ so the appearance of the output is professional.
   \cite{mathworks-help-center-text-properties}.
 }
 
-\includegraphics{gr-matlab.pdf}
+%\newenvironment{inlinegraphics}
+%  {%
+%    \vspace{\baselineskip}
+%  }
+%  {%
+%    \vspace{\baselineskip}
+%  }
+  
+%\begin{inlinegraphics}
+  \includegraphics{gr-matlab.pdf}
+%\end{inlinegraphics}
 
 This is the |misc/gr_matlab.m| input file:
 \MyI{misc/gr_matlab.m}
@@ -59,7 +69,11 @@ I typed, on Linux,\\
 \hspace*{3\parindent}\Shell{mpost gr-metapost-kim}\\
 \hspace*{3\parindent}\Shell{epstopdf gr-metapost-kim-1.mps;  epstopdf gr-metapost-kim-2.mps}\\
 \hspace*{3\parindent}\Shell{mv -i gr-metapost-kim-1.pdf gr-metapost-kim-2.pdf ../graphics}\\
-to run MetaPost and make two PDF files, |gr-metapost-kim-1.pdf| and |gr-metapost-kim-2.pdf|,
+to run \MetaPostLogo\ and
+make two PDF files,
+|gr-metapost-kim-1.pdf|
+and\\
+|gr-metapost-kim-2.pdf|,
 and move them to the graphics subfolder.
 \end{VerbatimOut}
 
@@ -463,7 +477,6 @@ and it's used as an emblem representing the hacker community.
 
 \begin{VerbatimOut}{z.out}
 
-\newpage
 
 \subsection{Tree example}
 \ix{???, ???}
@@ -500,27 +513,32 @@ and it's used as an emblem representing the hacker community.
         }
       };
   \end{tikzpicture}    
-
-\vspace*{4pt}
-The node with value \f nd\\[2pt]
-\indent\hspace*{4\parindent}
-\begin{tabular}{@{}llll@{}}
-  \bfseries with additional conditions& \bfseries has& \bfseries with value\\
-  \noalign{\vspace{2pt}}
-  (none)&                     left child&     \f n{{n+d}}\\
-  \noalign{\vspace{12pt}}
-  (none)&                     right child&    \f {{n+d}}d\\
-  \noalign{\vspace{12pt}}
-  $n<d$&                      parent&         \f n{{d-n}}\\
-  \noalign{\vspace{12pt}}
-  $n=d$&                      no parent&      (not applicable)\\
-  \noalign{\vspace{12pt}}
-  $n>d$&                      parent&         \f {{n-d}}d\\
-\end{tabular}
-}
 \end{VerbatimOut}
 
 \MyIO
+
+
+\begin{VerbatimOut}{z.out}
+The node with value \f nd
+\begin{inlinetable}
+  \begin{tabular}{@{}llll@{}}
+    \bfseries with additional conditions& \bfseries has& \bfseries with value\\
+    \noalign{\vspace{2pt}}
+    (none)&                     left child&     \f n{{n+d}}\\
+    \noalign{\vspace{12pt}}
+    (none)&                     right child&    \f {{n+d}}d\\
+    \noalign{\vspace{12pt}}
+    $n<d$&                      parent&         \f n{{d-n}}\\
+    \noalign{\vspace{12pt}}
+    $n=d$&                      no parent&      (not applicable)\\
+    \noalign{\vspace{12pt}}
+    $n>d$&                      parent&         \f {{n-d}}d\\
+  \end{tabular}
+\end{inlinetable}
+\end{VerbatimOut}
+
+\MyIO
+
 
 \begin{VerbatimOut}{z.out}
 

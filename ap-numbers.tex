@@ -1,4 +1,4 @@
-\ProvidesFile{ap-numbers.tex}[2022-07-03 numbers, units, and etc. appendix]
+\ProvidesFile{ap-numbers.tex}[2022-07-09 numbers, units, and etc. appendix]
 
 %  Primary sources:
 %      See https://www.bipm.org/utils/common/pdf/si-brochure/SI-Brochure-9-EN.pdf.
@@ -7,12 +7,10 @@
 %  Notes:
 %      See https://www.iso.org/standard/60241.html.
 
-\newcommand{\pkg}[1]{\textsf{#1}}
-
 \begin{VerbatimOut}{z.out}
 \chapter{NUMBERS, UNITS, AND ETC.}
 
-The \pkg{siunitx} \LaTeX\ package
+The \siunitxLogo\ \LaTeX\ package
 \cite{wright2022}
 can be used
 to correctly typeset
@@ -43,7 +41,7 @@ etc.
 %xx \MyIO
 %xx
 %xx \noindent\begin{tabular}{@{}lll@{}}
-%xx   \bfseries Input& \bfseries Output& \bfseries Comment\\
+%xx   \textbf{Input}& \textbf{Output}& \textbf{Comment}\\
 %xx   \tabularspace
 %xx   \verb+\si{\kg}+& \si{\kg}& kilogram\\
 %xx   \verb+\si{\m}+& \si{\m}& meter\\
@@ -64,7 +62,7 @@ etc.
 %xx
 %xx \begin{VerbatimOut}{z.out}
 %xx \begin{tabular}{@{}lll@{}}
-%xx   \bfseries Input& \bfseries Output& \bfseries Comment\\
+%xx   \textbf{Input}& \textbf{Output}& \textbf{Comment}\\
 %xx   \tabularspace
 %xx   \verb+\SI{12}{\kg}+& \SI{12}{\kg}& 12 kilograms\\
 %xx   \verb+\SI{34}{\m}+&  \SI{34}{\m}& 34 meters\\
@@ -115,6 +113,7 @@ etc.
 
 \begin{VerbatimOut}{z.out}
 
+
 \section{Numbers}
 \end{VerbatimOut}
 
@@ -125,13 +124,11 @@ etc.
 
 \subsection{Number Examples}
 
-{
-  % Use single spacing.
-  \ZZbaselinestretch{1}
-  \noindent
-  \hspace*{2\parindent}\begin{tabular}{@{}lll@{}}
+\begin{inlinetable}
+  \begin{tabular}{@{}lll@{}}
+    \toprule
     \textbf{Input}& \textbf{Output}& \textbf{Comment}\\
-    \tabularspace
+    \midrule
     |\num{3.45d-4}|&         \num{3.45d-4}\\
     |\num{-0.12345}|&        \num{-0.12345}&               note the small space after the |3|\\
     |\num{-0.1234}|&         \num{-0.1234}&                note no space between the |3| and |4|\\
@@ -153,14 +150,16 @@ etc.
     |\complexnum{-3-2i}|&    \complexnum{-3-2i}\\
     |\complexnum{2+3i}|&     \complexnum{2+3i}\\
     |\complexnum{4+-5i}|&    \complexnum{4+-5i}\\
+    \bottomrule
   \end{tabular}
-}
+\end{inlinetable}
 \end{VerbatimOut}
 
 \MyIO
 
 
 \begin{VerbatimOut}{z.out}
+
 
 \section{Units}
 
@@ -174,23 +173,20 @@ followed by a unit.
 \begin{VerbatimOut}{z.out}
 
 \subsection{Binary Prefixes}
-\end{VerbatimOut}
 
-These binary prefixes are defined by \pkg{siunitx}
-and are used for units related to computers.
-\MyIO
-
+These binary prefixes are defined by \siunitxLogo\ and
+are used for units related to computers,
+data storage,
+data transmission,
+etc.
   
-\begin{VerbatimOut}{z.out}
-{
-  % Use single spacing.
-  \ZZbaselinestretch{1}
+\begin{inlinetable}
   % Define a math mode version of "r" column type.
-  \newcolumntype{m}{>{$}r<{$}}
-  \noindent
-  \hspace*{2\parindent}\begin{tabular}{@{}mllll@{}}
+  \newcolumntype{m}{>{$}l<{$}}%
+  \begin{tabular}{@{}mllll@{}}
+    \toprule
     \textbf{Factor}& \textbf{Prefix}& \textbf{Pronounciation}& \textbf{Command}& \textbf{Symbol}\\
-    \tabularspace
+    \midrule
     2^{10}& kibi& kilobee& |\kibi|& \unit{\kibi\nounit}\\
     2^{20}& mebi& megabee& |\mebi|& \unit{\mebi\nounit}\\
     2^{30}& gibi& gigabee& |\gibi|& \unit{\gibi\nounit}\\
@@ -199,8 +195,9 @@ and are used for units related to computers.
     2^{60}& exbi& exbibee& |\exbi|& \unit{\exbi\nounit}\\
     2^{70}& zebi& zetabee& |\zebi|& \unit{\zebi\nounit}\\
     2^{80}& yobi& yobibee& |\yobi|& \unit{\yobi\nounit}\\
+    \bottomrule
   \end{tabular}
-}
+\end{inlinetable}
 \end{VerbatimOut}
 
 \MyIO
@@ -212,22 +209,13 @@ and are used for units related to computers.
 
 These decimal prefixes are used for units that are usually not
 related to computers.
-\end{VerbatimOut}
 
-\MyIO
-
-
-\begin{VerbatimOut}{z.out}
-
-{
-  % Use single spacing.
-  \ZZbaselinestretch{1}
-   % Define a math mode version of "r" column type.
-  \newcolumntype{m}{>{$}r<{$}}
-  \noindent
-  \hspace*{2\parindent}\begin{tabular}{@{}mlll@{}}
+\begin{inlinetable}
+  \newcolumntype{m}{>{$}l<{$}}%
+  \begin{tabular}{@{}mlll@{}}
+    \toprule
     \textbf{Factor}& \textbf{Prefix}& \textbf{Command}& \textbf{Symbol}\\
-    \tabularspace
+    \midrule
     10^{-24}& yocto& |\yocto|& \unit{\yocto\nounit}\\
     10^{-21}& zepto& |\zepto|& \unit{\zepto\nounit}\\
     10^{-18}& atto&  |\atto|&  \unit{\atto\nounit}\\
@@ -248,8 +236,9 @@ related to computers.
     10^{ 18}& exa&   |\exa|&   \unit{\exa\nounit}\\
     10^{ 21}& zetta& |\zetta|& \unit{\zetta\nounit}\\
     10^{ 24}& yotta& |\yotta|& \unit{\yotta\nounit}\\
+    \bottomrule
   \end{tabular}
-}
+\end{inlinetable}
 \end{VerbatimOut}
 
 \MyIO
@@ -257,7 +246,8 @@ related to computers.
 
 \begin{VerbatimOut}{z.out}
 
-Here is the complete list of units defined by the \pkg{siunitx} package:
+Here is the complete list of units defined
+by the \siunitxLogo\ package:
 
 {
   \ZZbaselinestretch{1}
@@ -416,21 +406,20 @@ Here is the complete list of units defined by the \pkg{siunitx} package:
 
 \subsection{Unit Examples}
 
-{
-  % Use single spacing.
-  \ZZbaselinestretch{1}
-  \noindent
-  \hspace*{2\parindent}\begin{tabular}{@{}ll@{}}
+\begin{inlinetable}
+  \begin{tabular}{@{}ll@{}}
+    \toprule
     \textbf{Input}& \textbf{Output}\\
-    \tabularspace
+    \midrule
     |\unit{\meter}|&       \unit{\meter}\\
     |\unit{\m}|&           \unit{\m}\\
     |\unit{m}|&            \unit{m}\\[6pt]
-    |\unit{\milli\meter}|& \unit{\milli\meter}\\                                  
+    |\unit{\milli\meter}|& \unit{\milli\meter}\\
     |\unit{\mm}|&          \unit{\mm}\\
-    |\unit{mm}|&           \unit{mm}\\[6pt]
+    |\unit{mm}|&           \unit{mm}\\
+    \bottomrule
   \end{tabular}
-}
+\end{inlinetable}
 \end{VerbatimOut}
 
 \MyIO
@@ -451,6 +440,7 @@ The speed of light in a vacuum (\unit{\c}) is defined as \qty{299792457}{m\per s
 
 \begin{VerbatimOut}{z.out}
 
+
 \section{Combined Unit}
 
 Units can be combined to make a combined unit.
@@ -466,21 +456,20 @@ are defined in PurdueThesis.cls.
 
 \subsection{Combined Unit Examples}
 
-{
-  % Use single spacing.
-  \ZZbaselinestretch{1}
-  \noindent
-  \hspace*{2\parindent}\begin{tabular}{@{}ll@{}}
+\begin{inlinetable}
+  \begin{tabular}{@{}ll@{}}
+    \toprule
     \textbf{Input}& \textbf{Output}\\
-    \tabularspace  
+    \midrule
     |\unit{\meter\per\second}|&   \unit{\meter\per\second}\\
     |\unit{\m\per\s}|&            \unit{\m\per\s}\\
     |\unit{m.s^{-1}}|&            \unit{m.s^{-1}}\\
     |\unit{m.s\NE1}|&             \unit{m.s\NE1}\\[6pt]
     |\unit{m.s^2}|&               \unit{m.s^2}\\
     |\unit{m.s\PE2}|&             \unit{m.s\PE2}\\
+    \bottomrule
   \end{tabular}
-}
+\end{inlinetable}
 \end{VerbatimOut}
 
 \MyIO
@@ -488,19 +477,18 @@ are defined in PurdueThesis.cls.
 
 \begin{VerbatimOut}{z.out}
 
+
 \section{Quantity}
 
 A quantity consists of a number with a unit or combined units.
 
 \subsection{Quantity Examples}
 
-{
-  % Use single spacing.
-  \ZZbaselinestretch{1}
-  \noindent
-  \hspace*{2\parindent}\begin{tabular}{@{}ll@{}}
+\begin{inlinetable}
+  \begin{tabular}{@{}ll@{}}
+    \toprule
     \textbf{Input}& \textbf{Output}\\
-    \tabularspace
+    \midrule
     |\qty{2}{\meter}|&            \qty{2}{\meter}\\
     |\qty{3}{\m}|&                \qty{3}{\m}\\
     |\qty{4}{m}|&                 \qty{4}{m}\\[6pt]
@@ -508,8 +496,9 @@ A quantity consists of a number with a unit or combined units.
     |\qty{3}{\m\per\s}|&          \qty{3}{\m\per\s}\\
     |\qty{4}{m.s^{-1}}|&          \qty{4}{m.s^{-1}}\\
     |\qty{5}{m.s\NE1}|&           \qty{5}{m.s\NE1}\\
+    \bottomrule
   \end{tabular}
-}
+\end{inlinetable}
 \end{VerbatimOut}
 
 \MyIO
@@ -550,21 +539,26 @@ The earth's gravitation acceleration is
 
 \begin{VerbatimOut}{z.out}
 
+
 \section{Etc.}
 
 \subsection{Angles}
 
-\begin{tabular}{@{}lll@{}}
-  \textbf{Input}& \textbf{Output}& \textbf{Comment}\\
-  \tabularspace
-  |-\ang{10}|&    -\ang{10}\\
-  |\ang{;;3}|&    \ang{;;3}\\
-  |\ang{;2;}|&    \ang{;2}\\
-  |\ang{1}|&      \ang{1}\\
-  |\ang{1;2}|&    \ang{1;2}\\
-  |\ang{1;2;3}|&  \ang{1;2;3}\\
-  |\ang{10}|&     \ang{10}\\
-\end{tabular}
+\begin{inlinetable}
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    \textbf{Input}& \textbf{Output}& \textbf{Comment}\\
+    \midrule
+    |-\ang{10}|&    -\ang{10}\\
+    |\ang{;;3}|&    \ang{;;3}\\
+    |\ang{;2;}|&    \ang{;2}\\
+    |\ang{1}|&      \ang{1}\\
+    |\ang{1;2}|&    \ang{1;2}\\
+    |\ang{1;2;3}|&  \ang{1;2;3}\\
+    |\ang{10}|&     \ang{10}\\
+    \bottomrule
+  \end{tabular}
+\end{inlinetable}
 \end{VerbatimOut}
 
 \MyIO
@@ -599,7 +593,7 @@ Using |\displaystyle| size:
 
 \begin{VerbatimOut}{z.out}
   
-I first tried to do this using the \pkg{siunitx} |\per| command
+I first tried to do this using the \siunitxLogo\ |\per| command
 but couldn't figure it out.
 I decided to demonstrate how to do this without using SI unit abbreviations.
 \begin{align}

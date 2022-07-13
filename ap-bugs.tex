@@ -1,19 +1,16 @@
-\ProvidesFile{ap-bugs}[2022-05-18 bugs appendix]
+\ProvidesFile{ap-bugs}[2022-07-11 bugs appendix]
 
 \makeatletter
-\newcommand{\bug}[2]
+\newcommand{\MyBug}[2]
   {%
-    \vspace{6pt}
+    \vspace*{6pt}
     \noindent
     {%
       \bfseries
       \ifthen{\equal{high}{#2}}{\color{red}}%
-      \ifthen{\equal{medium}{#2}}{\color{yellow}}%
       \ifthen{\equal{low}{#2}}{\color{green}}%
+      \ifthen{\equal{wait}{#2}}{\color{blue}}%
       \ifthen{\equal{done}{#2}}{\color{black}}%
-      \ifthen{\equal{fixed}{#2}}{\color{black}}%
-      \ifthen{\equal{wait}{#2}}{\color{black}}%
-      \ifthen{\equal{not}{#2}}{\color{gray}}%
       {\fontsize{9}{10}\reset@font\bf BUG}
       #1.
     }%
@@ -24,27 +21,34 @@
 \chapter{BUGS}
 
 This appendix lists all bugs/comments/issues/etc\@.
-under the generic name `bug'.
-Each bug is assigned a number when I learn of it.
-Bug numbers are 1, 2,~\ldots~.
-I started keeping track of bugs in this fashion on February 26, 2022,
+under the generic label `bug'.
+
+Each bug
+is assigned the next number
+when it is added to this list.
+I started keeping track of bugs
+in this fashion
+on February 26, 2022,
 and some previously known bugs are included in this list.
 A color indicates a bug's priority:
 
-\begin{tabular}{@{}ll@{}}
-  \toprule
-  \bf Priority& \bf Color\\
-  \midrule
-  high or easy& \color{red}red\\
-  medium& \color{yellow}yellow\\
-  low& \color{green}green\\
-  waiting on someone else& \color{black}black\\
-  done& \color{black}black\\
-  not assigned yet& \color{gray}gray\\
-  \bottomrule\\
-\end{tabular}
+\begin{inlinetable}
+  \newcommand{\Color}[1]{\color{#1}#1}
+  \begin{tabular}{@{}ll@{}}
+    \toprule
+    \textbf{Priority}& \textbf{Color}\\
+    \midrule
+    high&    \Color{red}\\
+    low&     \Color{green}\\
+    waiting& \Color{blue}\\
+    done&    \Color{black}\\
+    \bottomrule
+  \end{tabular}
+\end{inlinetable}
 
-See ap-bugs.tex file for the \LaTeXLogo\ input for this appendix.
+See the
+|ap-bugs.tex|
+file for the \LaTeXLogo\ input for this appendix.
 
 
 \section{These bugs need to be looked at}
@@ -52,42 +56,42 @@ See ap-bugs.tex file for the \LaTeXLogo\ input for this appendix.
 % I need to fix the following things in \PurdueThesis.
 % They are listed in bug number order.
 
-\bug{1}{high}
+\MyBug{1}{high}
 Table of Contents is double-spaced instead of 1\sfrac12 spacing.
 Tighten up section and less significant heading spacing?\\
 Reported by Anita Adams Sale on 2021-03-17.
 
-\bug{2}{high}
-List of Figures indented $\approx$\sfrac14 inch
+\MyBug{2}{high}
+List of Figures indented \(\approx\sfrac14\) inch
 more than List of Tables.\\
 Reported by Anita Adams Sale on 2021-03-17.\\
 Use |pdflatex| instead of |lualatex| to fix this.
 Tested ok on 2022-05-06.\\
 Tested bad on 2022-05-18.
 
-\bug{6}{not}
-APA reference style indents references too far on left.\\
+\MyBug{6}{high}
+APA reference style indents references too far.\\
 Reported by Mark Senn on 2021-04-08.
 
-\bug{8}{not}
+\MyBug{8}{low}
 Use ``Last Accessed: yyyy-mm-dd.'' urldate in bibliography.\\
 Reported by Mark Senn on 2021-04-19.
 
-\bug{9}{low}
+\MyBug{9}{low}
 Check that |@{}| is before the left column
 and after the right column in all tables.\\
 Reported by Mark Senn on 2021-04-19.
 
-\bug{11}{low}
+\MyBug{11}{low}
 Bibliography change:
 Change,
 for example,
 ``Acoustical Science and Technology, vol.~23, no.~1''
 to
-``Acoustical Science and Technology {\bfseries 23\/} ({\bfseries 1\/})''.\\
+``Acoustical Science and Technology {\textbf{23}} ({\textbf{1})''.\\
 Reported by Daniel Joesph Carr on 2021-06-16.
 
-\bug{12}{low}
+\MyBug{12}{low}
 Bibliography change:
 Change,
 for example,
@@ -96,12 +100,12 @@ to
 |M.~Abramowitz and I.A.~Stegun, editors,|.\\
 Reported by Daniel Joesph Carr on 2021-06-16.
 
-\bug{13}{low}
+\MyBug{13}{low}
 Headings containing a SmallCaps font do not work.\\
 Reported by Javad (Nima) Darivandpour on 2021-06-29.
-See \ref{section-headings-with-smallcaps-font}.
+See \ref{se:section-heading-with-smallcaps}.
 
-\bug{14}{low}
+\MyBug{14}{low}
 On Overleaf only,
 when using
 |\def\ZZshowtimestamp{true}|,
@@ -112,30 +116,30 @@ This might be due to using
 |\ExplSyntaxOn| \ldots |\ExplSyntaxOff|
 and having |:| and/or other characters having the wrong catcode.
 
-\bug{15}{not}
-Left reference section margin is ok if a person has 10--99 references.
+\MyBug{15}{low}
+Reference indentation is ok if a person has 10--99 references.
 Figure out how to adjusting margin for 1--9 or over 99 references.\\
 Reported by Mark Senn on unknown date.
 
-\bug{16}{high}
+\MyBug{16}{high}
 Add DTECH degree.\\
 Reported by Mark Senn on unknown date.
 
-\bug{19}{high}
+\MyBug{19}{high}
 |Bibliography| and |References| missing from navigation panel.\\
 Reported by Mark Senn on 2022-02-28.
 
-\bug{20}{high}
+\MyBug{20}{high}
 |Bibliography| and |References| should be in all caps.\\
 Reported by Mark Senn on 2022-02-28.
 
-\bug{21}{low}
+\MyBug{21}{low}
 IE students should be able
 to specify IEEE
 or APA bibliography format.\\
 Reported by Patrick Brunese on 2022-03-04.
 
-\bug{22}{high}
+\MyBug{22}{high}
 Table and figure captions
 should be able to be justified automatically
 to the width of the table or figure.
@@ -154,7 +158,7 @@ See
 for information on how to do this.
 Reported by Daniel Carr on 2021-07-29.
 
-\bug{23}{low}
+\MyBug{23}{low}
 The following example lines are used to specify information:
 \begin{quote}
 |\def\ZZinstitution{Purdue University}|\\
@@ -169,7 +173,7 @@ Make them uniform so \Keys{space}
 or |\space| are used everywhere.
 Reported by Mark Senn on 2022-05-18.
 
-\bug{24}{high}
+\MyBug{24}{high}
 Convert the ametsocV6 \BibTeXLogo\ format
 to \BibLaTeXLogo\ for Earth and Planetary Sciences
 since \PurdueThesisLogo\ no longer supports \BibTeXLogo.
@@ -178,7 +182,7 @@ Reported by Mark Senn on 2022-05-18.
 
 \section{These bugs are waiting on a reply from someone other than Mark Senn}
 
-\bug{10}{wait}
+\MyBug{10}{wait}
 Using
 |linktoc = section|
 does not work with captions with
@@ -195,7 +199,7 @@ Waiting on Ashlee Messersmith.
 
 \section{These bugs have been rejected or fixed}
 
-\bug{3}{done}
+\MyBug{3}{done}
 Use ``Last Accessed: dd/mm/yy.'' urldate in bibliography.\\
 Reported by Priyank Kalgaonkar on 2021-04-06.\\
 Answered by Mark Senn on 2022-02-27.\\
@@ -205,19 +209,19 @@ I recommend using what your bibliography style defines
 or the unambiguous ISO 8601 standard yyyy-mm-dd
 \cite{cms17-iso-dates}.
 
-\bug{4}{done}
+\MyBug{4}{done}
 Change citation, e.g., |[6], [71]| to |[6,71]|.\\
 Reported by Mark Senn on 2021-04-07.
 Fixed on 2022-04-14.
 Tested ok on 2022-04-14.
 
-\bug{5}{done}
+\MyBug{5}{done}
 Change citation, e.g., |[6], [7], [8]| to |[6-8]|.\\
 Reported by Mark Senn on 2021-04-07.
 Fixed on 2022-04-14.
 Tested ok on 2022-04-14.
 
-\bug{7}{fixed}
+\MyBug{7}{fixed}
 Non-nested description environments have bold items.
 Nested description environments have non-bold items.
 How come?
@@ -225,12 +229,12 @@ Are the indentations correct?\\
 Reported by Mark Senn on 2021-04-09.
 Tested ok on 2021-05-31.
 
-\bug{17}{fixed}
+\MyBug{17}{fixed}
 Allow |,| (comma) in |\title|.\\
 Reported by Mark Senn on unknown date.
 Tested ok on 2021-11-30.
 
-\bug{18}{fixed}
+\MyBug{18}{fixed}
 Allow |\\| in |\title|.\\
 Reported by Mark Senn on unknown date.
 Tested ok on 2021-11-30.

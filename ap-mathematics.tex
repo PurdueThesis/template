@@ -1,4 +1,4 @@
-\ProvidesFile{ap-mathematics.tex}[2022-05-16 mathematics appendix]
+\ProvidesFile{ap-mathematics.tex}[2022-07-13 mathematics appendix]
 
 \begin{VerbatimOut}{z.out}
 \chapter{MATHEMATICS}
@@ -12,11 +12,74 @@ to do mathematics.
 \MyIO
 
 
+
+
 \begin{VerbatimOut}{z.out}
-There are two types of mathematics in \LaTeX.
+
+International standard ISO 80000-2:2019
+\cite{iso8000022019}
+states that \(\mit e\),~%
+\(\mit i\),~%
+\(\mit j\),~%
+and \(\itpi\) should appear as
+\(\mathup e\),~%
+\(\mathup i\),~%
+\(\mathup j\),~%
+and~\(\mathup \pi\) because they are constants.
+I had thesis.tex set up to do this automatically
+and got complaints that i was not in a math italic font.
+By default I'm now setting things up so e and pi
+are set in an upright font automatically
+and i and j are set in a math italic font.
+So the new defaults, when typset in math mode, are
+\begin{inlinetable}
+  \begin{tabular}{@{}lllllllll@{}}
+    \textbf{Description}&
+      \textbf{In}& \textbf{Out}\qquad& \textbf{In}& \textbf{Out}\qquad&
+      \textbf{In}& \textbf{Out}& \textbf{In}& \textbf{Out}\\
+    \midrule
+    New Default&               |e|&   \(e\)&    |i|&  \(i\)&  |j|&  \(j\)&  |\pi|&   \(\pi\)\\
+    To Get Other Symbol\qquad& |\ite|& \(\ite\)\quad& |\i|& \(\i\)\quad& |\j|& \(\j\)\quad& |\itpi|& \(\itpi\)\\
+    \bottomrule
+  \end{tabular}
+\end{inlinetable}
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+  
+Euler's identity is
+\begin{equation*}
+  e^{\i\pi} + 1 = 0.
+\end{equation*}
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+
+Here's a simple formula relating $e$,~$i$,~$\pi$, and~$\phi$,
+the golden ratio
+\begin{equation}
+  e^{\i\pi} + 2\phi = \sqrt 5.
+\end{equation}
+I didn't notice anything on the web about putting the symbol for
+the golden ratio in a special font even though it is a constant.
+\end{VerbatimOut}
+
+\MyIO
+
+
+\begin{VerbatimOut}{z.out}
+There are two types of mathematics in \LuaLaTeXLogo.
 Text math is math that that is interspersed with text.
-For example, this is text math: \(a = b + c\).
-This is display math:
+For example, \(a = b + c\), is text math.
+Display math is math that is away from the text on
+line(s) of it's own.
+For example,
 \begin{equation}
   a = b + c
 \end{equation}
@@ -32,35 +95,35 @@ This is display math:
 
 Standard functions should be in a roman font.
 Like this: \(\cos\theta\).
-Here is a list of standard function commands:\\
+Here is a list of standard function commands:
 
-% The "@{\hspace*{\parindent}}" indents the table
-% the same amount as a paragraph.
-\begin{tabular}{@{\hspace*{\parindent}}llll@{}}
-  \verb+\arccos+& \verb+\csc+& \verb+\ker+&    \verb+\min+\\
-  \verb+\arcsin+& \verb+\deg+& \verb+\lg+&     \verb+\Pr+\\
-  \verb+\arctan+& \verb+\det+& \verb+\lim+&    \verb+\sec+\\
-  \verb+\arg+&    \verb+\dim+& \verb+\liminf+& \verb+\sin+\\
-  \verb+\cos+&    \verb+\exp+& \verb+\limsup+& \verb+\sinh+\\
-  \verb+\cosh+&   \verb+\gcd+& \verb+\ln+&     \verb+\sup+\\
-  \verb+\cot+&    \verb+\hom+& \verb+\log+&    \verb+\tan+\\
-  \verb+\coth+&   \verb+\inf+& \verb+\max+&    \verb+\tanh+\\
-\end{tabular}
-\ix
-{%
-  arccos//arcsin//arctan//arg//cos//cosh//cot//coth%
-  //csc//deg//det//dim//exp//gcd//hom//inf%
-  //ker//lg//lim//liminf//limsup//ln//log//max%
-  //min//Pr//sec//sin//sinh//sup//tan//tanh%
-}
-\index{\verb+\arccos+} \index{\verb+\arcsin+} \index{\verb+\arctan+} \index{\verb+\arg+}
-\index{\verb+\cos+} \index{\verb+\cosh+} \index{\verb+\cot+} \index{\verb+\coth+}
-\index{\verb+\csc+} \index{\verb+\deg+} \index{\verb+\det+} \index{\verb+\dim+}
-\index{\verb+\exp+} \index{\verb+\gcd+} \index{\verb+\hom+} \index{\verb+\inf+}
-\index{\verb+\ker+} \index{\verb+\lg+} \index{\verb+\lim+} \index{\verb+\liminf+}
-\index{\verb+\limsup+} \index{\verb+\ln+} \index{\verb+\log+} \index{\verb+\max+}
-\index{\verb+\min+} \index{\verb+\Pr+} \index{\verb+\sec+} \index{\verb+\sin+}
-\index{\verb+\sinh+} \index{\verb+\sup+} \index{\verb+\tan+} \index{\verb+\tanh+}
+\begin{inlinetable}
+  \begin{tabular}{@{}llll@{}}
+    \verb+\arccos+& \verb+\csc+& \verb+\ker+&    \verb+\min+\\
+    \verb+\arcsin+& \verb+\deg+& \verb+\lg+&     \verb+\Pr+\\
+    \verb+\arctan+& \verb+\det+& \verb+\lim+&    \verb+\sec+\\
+    \verb+\arg+&    \verb+\dim+& \verb+\liminf+& \verb+\sin+\\
+    \verb+\cos+&    \verb+\exp+& \verb+\limsup+& \verb+\sinh+\\
+    \verb+\cosh+&   \verb+\gcd+& \verb+\ln+&     \verb+\sup+\\
+    \verb+\cot+&    \verb+\hom+& \verb+\log+&    \verb+\tan+\\
+    \verb+\coth+&   \verb+\inf+& \verb+\max+&    \verb+\tanh+\\
+  \end{tabular}
+  \ix
+  {%
+    arccos//arcsin//arctan//arg//cos//cosh//cot//coth%
+    //csc//deg//det//dim//exp//gcd//hom//inf%
+    //ker//lg//lim//liminf//limsup//ln//log//max%
+    //min//Pr//sec//sin//sinh//sup//tan//tanh%
+  }
+  \index{\verb+\arccos+} \index{\verb+\arcsin+} \index{\verb+\arctan+} \index{\verb+\arg+}
+  \index{\verb+\cos+} \index{\verb+\cosh+} \index{\verb+\cot+} \index{\verb+\coth+}
+  \index{\verb+\csc+} \index{\verb+\deg+} \index{\verb+\det+} \index{\verb+\dim+}
+  \index{\verb+\exp+} \index{\verb+\gcd+} \index{\verb+\hom+} \index{\verb+\inf+}
+  \index{\verb+\ker+} \index{\verb+\lg+} \index{\verb+\lim+} \index{\verb+\liminf+}
+  \index{\verb+\limsup+} \index{\verb+\ln+} \index{\verb+\log+} \index{\verb+\max+}
+  \index{\verb+\min+} \index{\verb+\Pr+} \index{\verb+\sec+} \index{\verb+\sin+}
+  \index{\verb+\sinh+} \index{\verb+\sup+} \index{\verb+\tan+} \index{\verb+\tanh+}
+\end{inlinetable}
 \end{VerbatimOut}
 
 \MyIO
@@ -83,10 +146,13 @@ The temperature in the attic is \(t_\text{attic}\).
 \begin{VerbatimOut}{z.out}
 \section{Text Math}
 
-Use \verb+\(+ to start text math and \verb+\)+ to end text math.
-Some people use \verb+$+ to start and end text math---I don't
-recommend that because \LaTeX\ can give better error messages
-if you use \verb+\(+ and \verb+\)+.
+Use |\(| to start text math
+and |\)| to end text math.
+Some people use |$| to start and end text math---I
+don't recommend that because \LaTeX\
+can give better error messages
+if you use |\(|
+and |\)|.
 \end{VerbatimOut}
 
 \MyIO
@@ -104,11 +170,10 @@ beyond the ones provided in basic \LaTeX.
 The augmented set includes
 \cite{amslatex3project2019b}:
 
-\hbox to\hsize{%
-  \hss
+\begin{inlinetable}
   \begin{tabular}{@{}ll@{}}
     \toprule
-    \bfseries Environment& \bfseries Used for\\
+    \textbf{Environment}& \textbf{Used for}\\
     \midrule
     \tt equation& used for single equations\\
     \tt multline& split single equations over multiple lines\\
@@ -118,9 +183,8 @@ The augmented set includes
     \tt flalign& aligns multiple equations at multiple places on full length lines\\
     \tt split& split a single equation over multiple lines\\
     \bottomrule
-  \end{tabular}%
-  \hss
-}
+  \end{tabular}
+\end{inlinetable}
 
 All but \verb+split+ can be followed by \verb+*+ to not number equations.
 \end{VerbatimOut}
@@ -160,7 +224,7 @@ The \verb+equation*+ environment does single, unnumbered equations.
 
 \textcite{greene-2021-03-14}
 wrote
-% \begin{quotation}
+\begin{quote}
   For
   \href{https://twitter.com/hashtag/PiDay?src=hashtag\_click\#PiDay}{\#PiDay},
   one of the coolest formulae for today's honoree:
@@ -171,43 +235,7 @@ wrote
     \sum_{n=0}^\infty
     \frac  {(4n!) (1103+26390n)}  {(n!)^4 396^{4n}}
   \]
-% \end{quotation}
-\end{VerbatimOut}
-
-\MyIO
-
-
-\begin{VerbatimOut}{z.out}
-
-International standard ISO 80000-2:2019
-\cite{iso8000022019}
-states that $\mit e$,~$\mit i$,~$\mit j$,
-and $\itpi$ should appear as
-$e$,~$i$,~$j$
-and~$\pi$ because they are constants.
-This is done automatically by the pa-mismath package
-that is loaded by thesis.tex.
-See thesis.tex for more information,
-including what to do if you're not using those as constants.
-
-Euler's identity is
-\begin{equation*}
-  e^{i\pi} + 1 = 0.
-\end{equation*}
-\end{VerbatimOut}
-
-\MyIO
-
-
-\begin{VerbatimOut}{z.out}
-
-Here's a simple formula relating $e$,~$i$,~$\pi$, and~$\phi$,
-the golden ratio
-\begin{equation}
-  e^{i\pi} + 2\phi = \sqrt 5.
-\end{equation}
-I didn't notice anything on the web about putting the symbol for
-the golden ratio in a special font even though it is a constant.
+\end{quote}
 \end{VerbatimOut}
 
 \MyIO
@@ -754,7 +782,7 @@ Bayes' Theorem
 Nicomachus's theorem
 \cite{wikipedia-nicomachus}
 states that
-the sum of the first~$n$ cubes is the square of the~$n$th triangular number.
+the sum of the first~\(n\) cubes is the square of the~\(n\)th triangular number.
 That is,
 \[
   1^3 + 2^3 + 3^3 + \cdots + n^3 = (1 + 2 + 3 + \cdots + n)^2.

@@ -1,4 +1,4 @@
-\ProvidesFile{ap-common-mistakes.tex}[2022-05-16 common mistakes appendix]
+\ProvidesFile{ap-common-mistakes.tex}[2022-07-11 common mistakes appendix]
 
 \begin{VerbatimOut}{z.out}
 \chapter{COMMON MISTAKES}
@@ -76,20 +76,24 @@ is an abbreviation
 and should always be followed by a period.
 It should be in the normal font for your document---%
 do not italicize or underline it.
+But,
+it's ok if your bibliography
+or citation style
+is automatically italicizing it.
 
-Example:\\[6pt]
-\indent\indent
-\begin{tabular}{@{}ll@{}}
-  input&   \verb+Thun et al.~used data from Santa Claus.+\\
-  output&  Thun et al.~used data from Santa Claus.\\
-  comment& my recommendation\\[6pt]
-  input&   \verb+Thun et al. used data from Santa Claus.+\\
-  output&  Thun et al. used data from Santa Claus.\\
-  comment& too much space after period---\LaTeX\ thinks period is end of sentence\\[6pt]
-  input&   \verb+Thun et al\@. used data from Santa Claus.+\\
-  output&  Thun et al\@. used data from Santa Claus.\\
-  comment& spacing is right but the ``et al.'' could occur at end of a line\\
-\end{tabular}
+\begin{inlinetable}
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    \textbf{Input}&           \textbf{Output}&        \textbf{Comment}\\
+    \midrule
+    |Doe et al.~used data|&   Doe et al.~used data&   my recommendation\\
+    |Doe et al. used data|&   Doe et al. used data&   too much space after period,\\
+    &                         &                       period acts as end of sentence\\
+    |Doe et al\@. used data|& Doe et al\@. used data& spacing is right but the ``et al.''\\
+    &                         &                       could occur at end of line\\
+    \bottomrule
+  \end{tabular}
+\end{inlinetable}
 \end{VerbatimOut}
 
 \MyIO

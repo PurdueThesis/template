@@ -1,107 +1,97 @@
-\ProvidesFile{ap-frequently-asked-questions}[2022-05-16 frequently asked questions appendix]
-
-\newcommand{\MyA}{\textbf{A: }}
+\ProvidesFile{ap-frequently-asked-questions}[2022-07-09 frequently asked questions appendix]
 
 \makeatletter
-\newcommand{\faq}[2]
-  {%
-    \vspace{6pt}
-    \noindent
+  \newcommand{\MyAnswer}
     {%
-      \bfseries
-      \ifthen{\equal{high}{#2}}{\color{red}}%
-      \ifthen{\equal{medium}{#2}}{\color{yellow}}%
-      \ifthen{\equal{low}{#2}}{\color{green}}%
-      \ifthen{\equal{done}{#2}}{\color{black}}%
-      \ifthen{\equal{fixed}{#2}}{\color{black}}%
-      \ifthen{\equal{wait}{#2}}{\color{black}}%
-      \ifthen{\equal{not}{#2}}{\color{gray}}%
-      {\fontsize{9}{10}\reset@font\bf FAQ}
-      #1.
-    }%
-    \ignorespaces
-  }
+      \vspace*{3pt}
+      \noindent
+      {\fontsize{9}{10}\reset@font\textbf{ANSWER}}\space\space
+    }
+
+  \newcommand{\MyFaq}[2]
+    {%
+      \vspace*{6pt}
+      \noindent
+      {%
+        \bfseries
+        \ifthen{\equal{high}{#2}}{\color{red}}%
+        \ifthen{\equal{low}{#2}}{\color{green}}%
+        \ifthen{\equal{wait}{#2}}{\color{blue}}%
+        \ifthen{\equal{done}{#2}}{\color{black}}%
+        {\fontsize{9}{10}\reset@font\bf FAQ}
+        #1.
+      }%
+      \ignorespaces
+    }
+
+  \newcommand{\MyFollowup}
+    {%
+      \vspace*{3pt}
+      \noindent
+      {\fontsize{9}{10}\reset@font\textbf{FOLLOWUP}}\space\space
+    }
 \makeatother
   
 \chapter{FREQUENTLY ASKED QUESTIONS}
 
 This appendix lists all frequently asked questions.
-Each frequently asked question is assigned a number when I learn of it.
-Numbers are 1, 2,~\ldots~.
+Each frequently asked question
+is assigned the next number
+when it is added to this list.
 I started keeping track
 of frequently asked questions
 in this fashion
 on March 1, 2022.
 
-\begin{tabular}{@{}ll@{}}
-  \toprule
-  \bf Priority& \bf Color\\
-  \midrule
-  high or easy& \color{red}red\\
-  medium& \color{yellow}yellow\\
-  low& \color{green}green\\
-  waiting on someone else& \color{black}black\\
-  done& \color{black}black\\
-  not assigned yet& \color{gray}gray\\
-  \bottomrule\\
-\end{tabular}
+\begin{inlinetable}
+  \newcommand{\Color}[1]{\color{#1}#1}
+  \begin{tabular}{@{}ll@{}}
+    \toprule
+    \textbf{Priority}& \textbf{Color}\\
+    \midrule
+    high&    \Color{red}\\
+    low&     \Color{green}\\
+    waiting& \Color{blue}\\
+    done&    \Color{black}\\
+    \bottomrule
+  \end{tabular}
+\end{inlinetable}
 
 See the
 |ap-frequently-asked-questions.tex|
-file
-for the \LaTeXLogo\ input
-for this appendix.
-
-
-\section{These questions need to be answered}
-
-
-\section{These questions are waiting on a reply from someone other than Mark Senn}
-
-
-\section{These questions have been answered}
+file for the \LaTeXLogo\ input for this appendix.
 
 The subsection headings below are what part of the document
 the question is about.
 
-
 \subsection*{Everywhere}
-\faq{1}{done}
+
+\MyFaq{1}{done}
 The \LaTeXLogo\ input\\
-% \I2 \verb+$a | b$+\qquad
-(Mark Senn recommends using \verb+\(a | b\)+ instead)\\
-%   {\tt\char'134(\$a \char'174\ \$b\char'134)}
-%   instead%
-% )\\
+\I2 \verb+$a | b$+\\
+(Mark Senn recommends using \verb+\(a | b\)+ instead)
 gives\\
 \I2 |! LaTeX Error: Command \ttfamily invalid in math mode.|\\
-Reported by Negin Karisani.\\
-\MyA
+Reported by Negin Karisani.
+
+\MyAnswer
 In thesis.tex, change\\
 \I2 \verb+\DefineShortVerb{\|} % so "|verbatim|" will be verbatim+\\
-% {\tt
-%   \char'134 DefineShortVerb%
-%   \{\char'134\char'174\}\ \ %
-%   \% so "\char'174 verbatim\char'174" will be verbatim%
-% }\\
 to\\
 \I2 \verb+% \DefineShortVerb{\|} % so "|verbatim|" will be verbatim+
-% {\tt
-%   \%\ \char'134 DefineShortVerb%
-%   \{\char'134\char'174\}\ \ %
-%   \% so "\char'174 verbatim\char'174" will be verbatim%
-% }
-
 
 \subsection*{Table of Contents}
 
-\faq{2}{done}
+\MyFaq{2}{done}
 I want text instead of page number to be the link
-in the table of contents.
-Asked by Danushka Menikkumbura on 2022-03-11.\\
-\MyA
-In PurdueThesis.cls change \verb+linktoc = page+
-to \verb+linktoc = section+.
+in the table of contents.\\
+Asked by Danushka Menikkumbura on 2022-03-11.
+
+\MyAnswer
+In PurdueThesis.cls change
+|linktoc = page|
+to
+|linktoc = section|.
 I do not recommend doing this because
 \begin{itemize}
   \item
@@ -109,6 +99,6 @@ I do not recommend doing this because
     in new PurdueThesis.cls files in the future
   \item
     people are used to using page numbers instead
-    of chapter/section/etc. titles for where they
+    of chapter/section/etc.~titles for where they
     start
 \end{itemize}

@@ -1,9 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{PurdueThesis}[2022-07-05 Purdue University thesis document class]
-\newcommand{\PurdueThesisVersion}{PurdueThesis 2022-07-05}
-
-% REFERENCES
-%   [PU]
+\ProvidesClass{PurdueThesis}[2022-07-13 Purdue University thesis document class]
+\newcommand{\PurdueThesisVersion}{PurdueThesis 2022-07-13}
 %     I forget what this is off-hand.
 %   [TCMOS17]
 %     The Chicago Manual of  Style Online,
@@ -221,18 +218,11 @@
     \def\str_case:Vn#1#2{\str_case:VnTF{#1}{#2}{}{}}
   \ExplSyntaxOff
 
-% Provides
-%     \ifthenelse
-%     \newboolean
-%     \provideboolean
-%     \setboolean
-%     \whiledo
-% commands.
-% See
-%     https://ctan.org/pkg/ifthen?lang=en
-% The ifthen package gets loaded by something else.
-% \usepackage{ifthen}
-  \newcommand{\ifthen}[2]{\ifthenelse{#1}{#2}{}}
+% The ifthen package gets loaded by something else and defines
+%     \ifthenelse{condition}{do if true}{do if false}
+% This defines
+%     \ifthen{condition}{do if true}  
+\newcommand{\ifthen}[2]{\ifthenelse{#1}{#2}{}}
 
 % Provides the \ifpdf command.
 % See
@@ -941,7 +931,10 @@
         }
       \ifthen{\equal{pu-wl-ece}{\ZZinscampro}}
         {
-          \usepackage[backend=biber, citestyle=numeric-comp, dashed=false, locallabelwidth=true, sortcites=true, style=ieee]{biblatex}
+          % Ashlee Messersmith, Manager, Thesis and Dissertation Office
+          % approved this change on 2022-07-12.
+%         \usepackage[backend=biber, citestyle=numeric-comp, dashed=false, locallabelwidth=true, sortcites=true, style=ieee]{biblatex}
+          \usepackage[backend=biber, bibstyle=ieee, citestyle=numeric-comp, dashed=false, locallabelwidth=true]{biblatex}
           \addbibresource{all-biblatex.bib}
           % See
           % https://tex.stackexchange.com/questions/134191/line-breaks-of-long-urls-in-biblatex-bibliography
