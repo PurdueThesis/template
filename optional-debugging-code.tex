@@ -1,0 +1,86 @@
+\ProvidesFile{optional-debugging-code.tex}[2024-09-11 optional debugging code]
+%
+%  This is a trick Mark Senn uses to to override the
+%     \def\ZZprogram{...}
+% statement for testing.
+%
+% If pdflatex, lualatex, etc. are called with, for example,
+%     lualatex "\def\ZZOverrideProgram{eaps} \input{thesis}"
+% or
+%     lualatex "\def\ZZOverrideProgram{ece} \input{thesis}"
+% then \ZZprogram is set to
+%     Earth, Atmospheric, and Planetary Sciences
+% or
+%     Electrical and Computer Engineering}
+% respectively.
+%
+% If pdflatex,lualatex, etc. is called with
+%     lualatex thesis
+% then \ZZprogram is not changed from what is specified in thesis.tex.
+
+% Override what's in thesis.tex.
+\renewcommand{\ZZshowcolophon}{true}
+\renewcommand{\ZZshowdiagonalline}{true}
+\renewcommand{\ZZshowgridlines}{true}
+\renewcommand{\ZZshowmarginlines}{true}
+\renewcommand{\ZZshowtimestamp}{true}
+\renewcommand{\ZZshowtodonotes}{wide}
+
+\ExplSyntaxOn
+
+  {
+    \def\ZZbs{\c_backslash_str}
+
+    % Spaces are ignored inside \ExplSyntaxOn.                                    
+    % Use ▯ (Unicode U+25AF) instead of \space for a space.                       
+    \catcode`\▯=\active
+    \def▯{\space }
+
+    % From answer 7.5 on page 308 of The TeXbook:
+    %     If you type ‘\message{\string~}’ and ‘\message{\string\~}’, TeX
+    %     responds with ‘~’ and ‘\~’, respectively. To get \12 from \string you
+    %     therefore need to make backslash an active character. One way to do
+    %     this is
+    %         {\catcode‘/=0 \catcode‘\\=13 /message{/string\}}
+    %     (The “null control sequence” that you get when there are no tokens
+    %     between \csname and \endcsname is not a solution to this exercise,
+    %     because \string converts it to ‘\csname\endcsname’. There is, however,
+    %     another solution: If TeX’s \escapechar parameter---which will be
+    %     explained in one of the next dangerous bends---is negative or greater
+    %     than 255, then ‘\string\\’ works.)
+    \escapechar = -1
+
+    \typeout{ENTERING▯optional-debugging-code.tex.}
+
+    \typeout{▯▯\ZZbs ZZprogram▯is▯`\ZZprogram'.}
+
+    \cs_if_exist:NTF
+      \ZZOverrideProgram
+      {
+        \typeout{▯▯\ZZbs ZZOverrideProgram▯is▯`\ZZOverrideProgram'.}
+
+        \str_case:VnTF
+          \ZZOverrideProgram
+          {
+            {ama}   { \gdef\ZZprogram{Veterinary~Clinical~Sciences} }
+            {apa}   { \gdef\ZZprogram{Psychological~Sciences} }
+            {eaps}  { \gdef\ZZprogram{Earth,~Atmospheric,~and~Planetary~Sciences} }
+          }
+          % TRUE CODE
+          {}
+          % FALSE CODE
+          {
+            \typeout{\ZZbs ZZOverrideProgram▯(`\ZZOverrideProgram')▯is▯not▯'ama',▯`apa',▯or▯`eaps'.}
+            \ZZPause
+          }
+      }
+      {
+        \typeout{▯▯\ZZbs ZZOverrideProgram▯is▯not▯set.}
+      }
+
+    \typeout{▯▯\ZZbs ZZprogram▯is▯now▯`\ZZprogram'.}
+
+    \typeout{LEAVING▯optional-debugging-code.tex.}
+  }
+
+\ExplSyntaxOff
